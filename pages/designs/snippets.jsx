@@ -1,15 +1,15 @@
-import Head from "next/head";
 import Frame from "@/components/design/Frame";
+import SnippetsPageDesign from "@/components/design/SnippetsPageDesign";
+import Head from "next/head";
+import React, { useState } from "react";
 import {
-  FaRegHandScissors,
-  FaListAlt,
-  FaSearchengin,
   FaHome,
+  FaListAlt,
+  FaRegHandScissors,
+  FaSearchengin,
 } from "react-icons/fa";
-import { useState } from "react";
-import DashboardDesign from "@/components/design/DashboardDesign";
 
-export default function Home() {
+const SnippetsPage = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
@@ -20,22 +20,21 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${darkMode && "dark"}`}>
         {/* <div className="flex h-64 w-64 items-center justify-center bg-green-400">
-          <p className="5text-4xl font-extrabold text-black">ReTube</p>
-        </div> */}
+            <p className="5text-4xl font-extrabold text-black">ReTube</p>
+          </div> */}
         <Frame
           navLinks={nav}
           toggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
-          ContentSection={DashboardDesign}
+          ContentSection={SnippetsPageDesign}
         />
       </main>
     </>
   );
-}
+};
 
 const nav = [
   {
@@ -55,3 +54,5 @@ const nav = [
     icon: <FaSearchengin size="1.3rem" className="text-brand" />,
   },
 ];
+
+export default SnippetsPage;

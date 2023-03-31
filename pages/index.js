@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Cookies from "js-cookie";
 import Frame from "@/components/design/Frame";
 import {
   FaRegHandScissors,
@@ -9,6 +10,7 @@ import {
 import { useState } from "react";
 import DashboardDesign from "@/components/design/DashboardDesign";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,6 +22,23 @@ export default function Home() {
   const { data: session, status } = useSession();
 
   console.log(session);
+
+  useEffect(() => {
+    const csrftoken = Cookies.get("csrftoken");
+    if (csrftoken === undefined) {
+      fetch(`http://localhost:8000/api/csrf/`, {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data: ", data);
+          Cookies.set("csrftoken", data["X-CSRFToken"]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   // if (session) {
   //   return (

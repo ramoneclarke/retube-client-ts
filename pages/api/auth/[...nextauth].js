@@ -1,97 +1,74 @@
 import NextAuth from "next-auth";
+import Cookies from "js-cookie";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   debug: true,
-  session: {
-    strategy: "jwt",
-  },
-  //   cookies: {
-  //     sessionToken: {
-  //       name: `next-auth.session-token`,
-  //       options: {
-  //         httpOnly: true,
-  //         sameSite: "none",
-  //         path: "/",
-  //         domain: process.env.NEXT_PUBLIC_DOMAIN,
-  //         secure: true,
-  //       },
-  //     },
-  //     callbackUrl: {
-  //       name: `next-auth.callback-url`,
-  //       options: {
-  //         httpOnly: true,
-  //         sameSite: "none",
-  //         path: "/",
-  //         domain: process.env.NEXT_PUBLIC_DOMAIN,
-  //         secure: true,
-  //       },
-  //     },
-  //     csrfToken: {
-  //       name: `next-auth.csrf-token`,
-  //       options: {
-  //         httpOnly: true,
-  //         sameSite: "none",
-  //         path: "/",
-  //         domain: process.env.NEXT_PUBLIC_DOMAIN,
-  //         secure: true,
-  //       },
-  //     },
-  //   },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          access_type: "offline",
+        },
+      },
     }),
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       if (account.provider === "google") {
         // extract these two tokens
-        const { access_token, id_token } = account;
-
-        console.log(`accessToken: ${access_token}    idToken: ${id_token}`);
+        const { access_token: accessToken, id_token: idToken } = account;
 
         // make a POST request to the DRF backend
         try {
           const response = await fetch(
-            "http://localhost:8000/api/social/login/google",
+            "http://127.0.0.1:8000/api/social/login/google/",
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                "X-CSRFToken": Cookies.get("csrftoken"),
               },
+              credentials: "include",
               body: JSON.stringify({
-                access_token: access_token,
-                id_token: id_token,
+                access_token: accessToken,
+                id_token: idToken,
               }),
             }
           );
 
           // extract the returned token from the DRF backend and add it to the 'user' object
-          const { access_token } = await response.json();
-          user.accessToken = access_token;
+          const data = await response.json();
+          user.accessToken = data.access_token;
 
-          return true;
+          return true; // return true if everything worked
         } catch (error) {
+          console.log(error);
           return false;
         }
       }
+      return false;
     },
-    async session({ session, user, token }) {
-      session.accessToken = user.accessToken;
-      return session;
-    },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      if (user) {
-        const { accessToken } = user;
 
-        // reform the 'token' object from the access token appended to the user object
-        token.accessToken = accessToken;
+    async jwt({ user, token, account }) {
+      if (user) {
+        // reform the token object from the acces token we appended to the 'user' object
+        token.accessToken = user.accessToken;
       }
       return token;
     },
+
+    async session({ session, user, token }) {
+      // Send access token to the client
+      session.accessToken = token.accessToken;
+      return session;
+    },
   },
+  //   session: {
+  //     strategy: "database",
+  //   },
 };
 
 export default NextAuth(authOptions);

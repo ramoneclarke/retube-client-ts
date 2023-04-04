@@ -11,6 +11,7 @@ import { useState } from "react";
 import DashboardDesign from "@/components/design/DashboardDesign";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useEffect } from "react";
+import useRefetchingSession from "@/hooks/useRefetchingSession";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,7 +20,7 @@ export default function Home() {
     setDarkMode(!darkMode);
   };
 
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useRefetchingSession();
 
   console.log(session);
 

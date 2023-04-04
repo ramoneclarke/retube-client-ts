@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Cookies from "js-cookie";
 import GoogleProvider from "next-auth/providers/google";
 import { isJwtExpired, makeUrl } from "@/utils/AuthUtils";
+import { getCsrfToken } from "next-auth/react";
 
 export const refreshToken = async function (refreshToken, accessToken) {
   try {
@@ -95,6 +96,7 @@ export const authOptions = {
         if (account.provider === "google") {
           // extract these two tokens
           const { access_token: accessToken, id_token: idToken } = account;
+          const csrfToken = await getCsrfToken();
 
           // make a POST request to the DRF backend
           try {
@@ -104,7 +106,7 @@ export const authOptions = {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  "X-CSRFToken": Cookies.get("csrftoken"),
+                  "X-CSRFToken": csrfToken,
                 },
                 credentials: "include",
                 body: JSON.stringify({

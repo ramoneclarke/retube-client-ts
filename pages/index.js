@@ -22,25 +22,6 @@ export default function Home() {
 
   const { data: session, status, update } = useRefetchingSession();
 
-  console.log(session);
-
-  useEffect(() => {
-    const csrftoken = Cookies.get("csrftoken");
-    if (csrftoken === undefined) {
-      fetch(`http://localhost:8000/api/csrf/`, {
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("data: ", data);
-          Cookies.set("csrftoken", data["X-CSRFToken"]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
-
   // if (session) {
   //   return (
   //     <>

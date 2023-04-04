@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Cookies from "js-cookie";
 import Frame from "@/components/design/Frame";
 import {
   FaRegHandScissors,
@@ -8,6 +9,9 @@ import {
 } from "react-icons/fa";
 import { useState } from "react";
 import DashboardDesign from "@/components/design/DashboardDesign";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
+import useRefetchingSession from "@/hooks/useRefetchingSession";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -15,24 +19,63 @@ export default function Home() {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+
+  const { data: session, status, update } = useRefetchingSession();
+
+  console.log(session);
+
+  useEffect(() => {
+    const csrftoken = Cookies.get("csrftoken");
+    if (csrftoken === undefined) {
+      fetch(`http://localhost:8000/api/csrf/`, {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data: ", data);
+          Cookies.set("csrftoken", data["X-CSRFToken"]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
+
+  // if (session) {
+  //   return (
+  //     <>
+  //       Signed in as {session.user.email} <br />
+  //       <p className="">Status: {status}</p>
+  //       <button onClick={() => signOut()}>Sign out</button>
+  //     </>
+  //   );
+  // }
+  // return (
+  //   <>
+  //     Not signed in <br />
+  //     <button onClick={() => signIn("google")}>Sign in</button>
+  //   </>
+  // );
+
   return (
     <>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={`${darkMode && "dark"}`}>
-        {/* <div className="flex h-64 w-64 items-center justify-center bg-green-400">
-          <p className="5text-4xl font-extrabold text-black">ReTube</p>
-        </div> */}
-        <Frame
-          navLinks={nav}
-          toggleDarkMode={toggleDarkMode}
-          darkMode={darkMode}
-          ContentSection={DashboardDesign}
-        />
-      </main>
+      {status === "loading" && <h2>Loading...</h2>}
+
+      {status === "unauthenticated" && !session && (
+        <>
+          Not signed in <br />
+          <button onClick={() => signIn("google")}>Sign in</button>
+          <pre>{!session && "User is not logged in"}</pre>
+        </>
+      )}
+
+      {status === "authenticated" && session && (
+        <>
+          Signed in as {session.user.email} <br />
+          <button onClick={() => signOut()}>Sign out</button>
+          {session.accessToken && <pre>User has access token</pre>}
+        </>
+      )}
     </>
   );
 }

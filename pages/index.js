@@ -22,6 +22,23 @@ export default function Home() {
 
   const { data: session, status, update } = useRefetchingSession();
 
+  useEffect(() => {
+    const csrftoken = Cookies.get("csrftoken");
+    if (csrftoken === undefined) {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/csrf/`, {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data: ", data);
+          Cookies.set("csrftoken", data["X-CSRFToken"]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
+
   // if (session) {
   //   return (
   //     <>

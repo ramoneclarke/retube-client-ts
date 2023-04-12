@@ -7,7 +7,7 @@ import { getCsrfToken } from "next-auth/react";
 export const refreshToken = async function (refreshToken, accessToken) {
   try {
     const response = await fetch(
-      `${process.env.BACKEND_API_BASE}/auth/token/refresh/`,
+      `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/auth/token/refresh/`,
       {
         method: "POST",
         headers: {
@@ -38,7 +38,6 @@ export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
-    // maxAge: 24 * 60 * 60,
   },
   debug: process.env.NODE_ENV === "development",
   providers: [
@@ -96,17 +95,23 @@ export const authOptions = {
         if (account.provider === "google") {
           // extract these two tokens
           const { access_token: accessToken, id_token: idToken } = account;
-          const csrfToken = await getCsrfToken();
+          // const csrfToken = await getCsrfToken();
+          const csrfToken = Cookies.get("csrftoken");
+
+          console.log(`Inside jwt()`);
+          console.log(`Access token: ${accessToken}`);
+          console.log(`id token: ${idToken}`);
+          console.log("csrftoken: ", csrfToken);
+          console.log(Cookies.get("csrftoken"));
 
           // make a POST request to the DRF backend
           try {
             const response = await fetch(
-              `${process.env.BACKEND_API_BASE}/api/social/login/google/`,
+              `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/social/login/google/`,
               {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  "X-CSRFToken": csrfToken,
                 },
                 credentials: "include",
                 body: JSON.stringify({
@@ -116,8 +121,13 @@ export const authOptions = {
               }
             );
 
+            console.log("RESPONSE:");
+            console.log(response);
             // extract the returned token from the DRF backend and add it to the 'user' object
             const { access_token, refresh_token } = await response.json();
+            console.log("Data returned from backend");
+            console.log(`Access token: ${access_token}`);
+            console.log(`Refresh token: ${refresh_token}`);
             // reform the `token` object from the access token we appended to the `user` object
             token = {
               ...token,

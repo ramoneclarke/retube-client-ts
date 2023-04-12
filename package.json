@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@radix-ui/react-slider": "^1.1.1",
+    "@stripe/react-stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^1.52.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",

@@ -1,9 +1,20 @@
 import Frame from "@/components/design/Frame";
 import SnippetViewDesign from "@/components/design/SnippetViewDesign";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
+import {
+  FaHome,
+  FaListAlt,
+  FaRegHandScissors,
+  FaSearchengin,
+} from "react-icons/fa";
 
 const SnippetViewPage = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
   return (
     <>
       <Head>
@@ -21,5 +32,24 @@ const SnippetViewPage = () => {
     </>
   );
 };
+
+const nav = [
+  {
+    text: "Home",
+    icon: <FaHome size="1.3rem" className="text-brand" />,
+  },
+  {
+    text: "Snippets",
+    icon: <FaRegHandScissors size="1.3rem" className="text-brand" />,
+  },
+  {
+    text: "Summaries",
+    icon: <FaListAlt size="1.3rem" className="text-brand" />,
+  },
+  {
+    text: "Search",
+    icon: <FaSearchengin size="1.3rem" className="text-brand" />,
+  },
+];
 
 export default SnippetViewPage;

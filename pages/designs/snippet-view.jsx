@@ -1,9 +1,14 @@
 import Frame from "@/components/design/Frame";
 import SnippetViewDesign from "@/components/design/SnippetViewDesign";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 
 const SnippetViewPage = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
   return (
     <>
       <Head>

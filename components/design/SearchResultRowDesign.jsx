@@ -25,13 +25,14 @@ const SearchResultRowDesign = () => {
           Tailwind in 100 Seconds ascasxascg ascascas sacascas
         </p>
         <p className="text-dark line-clamp-3 dark:text-gray-500">
-          "while at the same time following the rules of a design system that
-          you don't get with plain CSS. It lives in the sweet spot between
-          convention and configuration. However, it does produce some ugly-ass
-          HTML. You've got tons of hard-to-read duplicated class names here. As
-          your UI grows in complexity, code duplication is inevitable. But you
-          can avoid it by creating reusable components with your favorite
-          JavaScript framework or by using the apply directory."
+          &quot;while at the same time following the rules of a design system
+          that you don&apos;t get with plain CSS. It lives in the sweet spot
+          between convention and configuration. However, it does produce some
+          ugly-ass HTML. You&apos;ve got tons of hard-to-read duplicated class
+          names here. As your UI grows in complexity, code duplication is
+          inevitable. But you can avoid it by creating reusable components with
+          your favorite JavaScript framework or by using the apply
+          directory.&quot;
         </p>
       </div>
     </div>

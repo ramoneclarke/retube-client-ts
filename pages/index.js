@@ -39,6 +39,29 @@ export default function Home() {
     }
   }, []);
 
+  const handleSignOut = async () => {
+    try {
+      // Call backend API to sign out user
+      const csrftoken = Cookies.get("csrftoken");
+      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/auth/logout/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+        credentials: "include",
+      }).then((response) => {
+        console.log(response);
+      });
+
+      // Sign out user on front end
+      await signOut({ redirect: false });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // if (session) {
   //   return (
   //     <>
@@ -70,7 +93,7 @@ export default function Home() {
       {status === "authenticated" && session && (
         <>
           Signed in as {session.user.email} <br />
-          <button onClick={() => signOut()}>Sign out</button>
+          <button onClick={() => handleSignOut()}>Sign out</button>
           {session.accessToken && <pre>User has access token</pre>}
         </>
       )}

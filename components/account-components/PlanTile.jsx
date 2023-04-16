@@ -1,19 +1,25 @@
 import { getCsrfToken } from "next-auth/react";
 import { useRouter } from "next/router";
 import React from "react";
+import Cookies from "js-cookie";
+import useRefetchingSession from "@/hooks/useRefetchingSession";
 
 const PlanTile = ({ planName, price, priceId }) => {
   const router = useRouter();
+  const { data: session, status, update } = useRefetchingSession();
+  console.log(session);
 
   const createCheckoutSession = () => {
-    const csrf = getCsrfToken();
+    const csrftoken = Cookies.get("csrftoken");
     const url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/payments/create-checkout-session/`;
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRFToken": csrf,
+        "X-CSRFToken": csrftoken,
+        Authorization: `Bearer ${session.accessToken}`,
       },
+      credentials: "include",
       body: JSON.stringify({ price_id: priceId }),
     })
       .then((res) => res.json())

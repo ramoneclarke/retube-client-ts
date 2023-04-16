@@ -126,6 +126,7 @@ export const authOptions = {
     async session({ session, token }) {
       // Send access token to the client
       session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
       return session;
     },
   },

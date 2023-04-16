@@ -50,6 +50,9 @@ export default function Home() {
           "X-CSRFToken": csrftoken,
         },
         credentials: "include",
+        body: JSON.stringify({
+          refresh: session.refreshToken,
+        }),
       }).then((response) => {
         console.log(response);
       });

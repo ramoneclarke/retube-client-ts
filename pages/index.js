@@ -22,6 +22,8 @@ export default function Home() {
 
   const { data: session, status, update } = useRefetchingSession();
 
+  console.log(session);
+
   // useEffect(() => {
   //   const csrftoken = Cookies.get("csrftoken");
   //   if (csrftoken === undefined) {
@@ -63,22 +65,6 @@ export default function Home() {
       console.error(error);
     }
   };
-
-  // if (session) {
-  //   return (
-  //     <>
-  //       Signed in as {session.user.email} <br />
-  //       <p className="">Status: {status}</p>
-  //       <button onClick={() => signOut()}>Sign out</button>
-  //     </>
-  //   );
-  // }
-  // return (
-  //   <>
-  //     Not signed in <br />
-  //     <button onClick={() => signIn("google")}>Sign in</button>
-  //   </>
-  // );
 
   return (
     <>

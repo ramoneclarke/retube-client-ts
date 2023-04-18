@@ -38,7 +38,6 @@ export const authOptions = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
-    // maxAge: 24 * 60 * 60,
   },
   debug: process.env.NODE_ENV === "development",
   providers: [
@@ -58,7 +57,6 @@ export const authOptions = {
         if (account.provider === "google") {
           // extract these two tokens
           const { access_token: accessToken, id_token: idToken } = account;
-
           // make a POST request to the DRF backend
           try {
             const response = await fetch(
@@ -127,6 +125,27 @@ export const authOptions = {
       // Send access token to the client
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/user-data/`,
+        {
+          headers: {
+            Authorization: `Bearer ${token.accessToken}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        const userData = await response.json();
+        session.user.data = userData;
+      } else {
+        console.error(
+          "Failed to fetch user data:",
+          response.status,
+          response.statusText
+        );
+      }
+
       return session;
     },
   },

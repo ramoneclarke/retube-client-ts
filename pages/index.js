@@ -12,17 +12,13 @@ import DashboardDesign from "@/components/design/DashboardDesign";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useEffect } from "react";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
+import Dashboard from "@/components/dashboard-components/Dashboard";
+import { useColorMode } from "@/context/ColorModeContext";
 
 export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const { darkMode } = useColorMode();
 
   const { data: session, status, update } = useRefetchingSession();
-
-  console.log(session);
 
   // useEffect(() => {
   //   const csrftoken = Cookies.get("csrftoken");
@@ -41,34 +37,9 @@ export default function Home() {
   //   }
   // }, []);
 
-  const handleSignOut = async () => {
-    try {
-      // Call backend API to sign out user
-      const csrftoken = Cookies.get("csrftoken");
-      await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/auth/logout/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          refresh: session.refreshToken,
-        }),
-      }).then((response) => {
-        console.log(response);
-      });
-
-      // Sign out user on front end
-      await signOut({ redirect: false });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <>
-      {status === "loading" && <h2>Loading...</h2>}
+      {/* {status === "loading" && <h2>Loading...</h2>}
 
       {status === "unauthenticated" && !session && (
         <>
@@ -84,26 +55,15 @@ export default function Home() {
           <button onClick={() => handleSignOut()}>Sign out</button>
           {session.accessToken && <pre>User has access token</pre>}
         </>
-      )}
+      )} */}
+      <Head>
+        <title>Create Next App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={`${darkMode && "dark"}`}>
+        <Dashboard />
+      </main>
     </>
   );
 }
-
-const nav = [
-  {
-    text: "Home",
-    icon: <FaHome size="1.3rem" className="text-brand" />,
-  },
-  {
-    text: "Snippets",
-    icon: <FaRegHandScissors size="1.3rem" className="text-brand" />,
-  },
-  {
-    text: "Summaries",
-    icon: <FaListAlt size="1.3rem" className="text-brand" />,
-  },
-  {
-    text: "Search",
-    icon: <FaSearchengin size="1.3rem" className="text-brand" />,
-  },
-];

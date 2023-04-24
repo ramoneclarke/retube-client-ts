@@ -1,11 +1,13 @@
 import { useColorMode } from "@/context/ColorModeContext";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const SidebarButton = ({ link }) => {
   const { darkMode } = useColorMode();
+  const router = useRouter();
 
-  if (link.text === "Home" && !darkMode) {
+  if (link.text === router.asPath && !darkMode) {
     return (
       <Link
         href={link.path}

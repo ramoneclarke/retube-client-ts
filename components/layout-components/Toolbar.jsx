@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import ColorModeButton from "./ColorModeButton";
 import Logo from "./Logo";
-import Link from "next/link";
 import UserAccountButton from "./UserAccountButton";
+import { useColorMode } from "@/context/ColorModeContext";
 
 const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
+  const { darkMode } = useColorMode();
   const handleClick = () => {
     if (!menuClicked) {
       setOpen(true);
@@ -17,7 +17,7 @@ const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
     <nav className="flex h-20 flex-row items-center justify-between bg-lightest shadow-2xl dark:bg-darkest lg:bg-lighter">
       <Logo />
       <div className="flex gap-6 pr-4">
-        <ColorModeButton />
+        <ColorModeButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         {/* <Link href="/account">
           <FaUserCircle className="cursor-pointer text-[1.8rem] text-brand lg:text-[2rem]" />
         </Link> */}

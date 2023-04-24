@@ -23,7 +23,6 @@ export const refreshToken = async function (refreshToken, accessToken) {
     if (!response.ok) {
       throw new Error(`HTTP error - Status: ${response.status}`);
     }
-
     const { access, refresh } = await response.json();
     // still within this block, return true
     return [access, refresh];
@@ -125,7 +124,6 @@ export const authOptions = {
       // Send access token to the client
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/user-data/`,
         {

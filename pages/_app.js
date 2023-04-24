@@ -1,6 +1,7 @@
 import { Inter, Montserrat } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
+import { ColorModeProvider } from "@/context/ColorModeContext";
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 export default function App({
@@ -9,9 +10,11 @@ export default function App({
 }) {
   return (
     <SessionProvider session={session} refetchOnWindowFocus={false}>
-      <main className={montserrat.className}>
-        <Component {...pageProps} />
-      </main>
+      <ColorModeProvider>
+        <main className={montserrat.className}>
+          <Component {...pageProps} />
+        </main>
+      </ColorModeProvider>
     </SessionProvider>
   );
 }

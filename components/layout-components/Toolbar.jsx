@@ -6,7 +6,7 @@ import UserAccountButton from "./UserAccountButton";
 import { useColorMode } from "@/context/ColorModeContext";
 
 const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
-  const { darkMode } = useColorMode();
+  const { darkMode, toggleDarkMode } = useColorMode();
   const handleClick = () => {
     if (!menuClicked) {
       setOpen(true);

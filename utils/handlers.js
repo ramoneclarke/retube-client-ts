@@ -22,3 +22,18 @@ export const handleSignOut = async () => {
     console.error(error);
   }
 };
+
+export const extractVideoId = (url) => {
+  // regular expression pattern to match YouTube video URLs
+  const pattern =
+    /^https?:\/\/(?:www\.)?youtube.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
+  // test if the URL matches the pattern
+  if (pattern.test(url)) {
+    // extract the video ID using regex match
+    const match = url.match(pattern);
+    return match[1];
+  } else {
+    // URL is not valid
+    return "Invalid YouTube URL";
+  }
+};

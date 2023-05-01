@@ -9,7 +9,7 @@ export default function useRefetchingSession() {
     */
   const { data, status, update } = useSession();
 
-  // Polling the session every 10 minutes¦
+  // Polling the session every 5 minutes¦
   useEffect(() => {
     const interval = setInterval(() => {
       if (navigator.onLine) {
@@ -22,14 +22,14 @@ export default function useRefetchingSession() {
 
   // Listen for when the page is visible, if the user switches tabs
   // and makes our tab visible again, re-fetch the session
-  // useEffect(() => {
-  //   const visibilityHandler = () => {
-  //     document.visibilityState === "visible" && update();
-  //   };
-  //   window.addEventListener("visibilitychange", visibilityHandler, false);
-  //   return () =>
-  //     window.removeEventListener("visibilitychange", visibilityHandler, false);
-  // }, [update]);
+  useEffect(() => {
+    const visibilityHandler = () => {
+      document.visibilityState === "visible" && update();
+    };
+    window.addEventListener("visibilitychange", visibilityHandler, false);
+    return () =>
+      window.removeEventListener("visibilitychange", visibilityHandler, false);
+  }, [update]);
 
   return {
     data: data,

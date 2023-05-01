@@ -14,11 +14,14 @@ import { AnimatePresence } from "framer-motion";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import NewSnippetWindow from "./NewSnippetWindow";
 import SnippetWindow from "./SnippetWindow";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const SnippetsPage = () => {
   const defaultEndTime = 60;
   const [startTimeSeconds, setStartTimeSeconds] = useState(0);
   const [endTimeSeconds, setEndTimeSeconds] = useState(defaultEndTime);
+  const debouncedStartTimeSeconds = useDebounce(startTimeSeconds, 1000);
+  const debouncedEndTimeSeconds = useDebounce(endTimeSeconds, 1000);
   const [videoDuration, setVideoDuration] = useState(0);
   const [videoId, setVideoId] = useState("");
   const [inputText, setInputText] = useState("");
@@ -48,8 +51,8 @@ const SnippetsPage = () => {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
-      start: startTimeSeconds,
-      end: endTimeSeconds,
+      start: debouncedStartTimeSeconds,
+      end: debouncedEndTimeSeconds,
       fs: 0,
     },
   };

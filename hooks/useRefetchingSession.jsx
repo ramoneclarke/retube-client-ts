@@ -13,9 +13,11 @@ export default function useRefetchingSession() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (navigator.onLine) {
+        console.log("Updating due to polling");
         update();
       }
-    }, 1000 * 60 * 5); // 5 minutes
+      // }, 1000 * 60 * 5); // 5 minutes
+    }, 1000 * 60); // 60 seconds
 
     return () => clearInterval(interval);
   }, [update]);

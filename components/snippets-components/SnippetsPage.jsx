@@ -15,8 +15,9 @@ import useRefetchingSession from "@/hooks/useRefetchingSession";
 import NewSnippetWindow from "./NewSnippetWindow";
 import SnippetWindow from "./SnippetWindow";
 import { useDebounce } from "@/hooks/useDebounce";
+import { getSession } from "next-auth/react";
 
-const SnippetsPage = () => {
+const SnippetsPage = ({ initialSnippets }) => {
   const defaultEndTime = 60;
   const [startTimeSeconds, setStartTimeSeconds] = useState(0);
   const [endTimeSeconds, setEndTimeSeconds] = useState(defaultEndTime);
@@ -29,11 +30,15 @@ const SnippetsPage = () => {
   const [newSnippetWindowOpen, setNewSnippetWindowOpen] = useState(false);
   const [selectedSnippetData, setSelectedSnippetData] = useState(null);
 
-  const { data: session } = useRefetchingSession();
+  const { data: session, update } = useRefetchingSession();
 
   const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
     ["snippets"],
-    () => getSnippets(session.accessToken)
+    () => getSnippets(session.accessToken),
+    {
+      initialData: initialSnippets,
+      enabled: false,
+    }
   );
 
   console.log(data);
@@ -42,6 +47,16 @@ const SnippetsPage = () => {
     mutationFn: (mutationArgs) => {
       const { id, start, end, token } = mutationArgs;
       return createSnippet(id, start, end, token);
+    },
+    onSuccess: () => {
+      // refreshSnippets(update, refetch);
+      try {
+        update().then(() => refetch());
+        console.log("refreshing snippets");
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
     },
   });
 
@@ -119,6 +134,7 @@ const SnippetsPage = () => {
           <RecentSnippetsSection
             data={data}
             isLoading={isLoading}
+            isError={isError}
             snippetWindowOpen={snippetWindowOpen}
             setSnippetWindowOpen={setSnippetWindowOpen}
             startTimeSeconds={startTimeSeconds}
@@ -205,7 +221,7 @@ const getSnippets = async (token) => {
     console.log(data);
     return data;
   } catch (err) {
-    console.log(err);
+    throw err;
   }
 };
 

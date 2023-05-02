@@ -1,4 +1,7 @@
-export const handleSignOut = async () => {
+import Cookies from "js-cookie";
+import { signOut } from "next-auth/react";
+
+export const handleSignOut = async (refreshToken) => {
   try {
     // Call backend API to sign out user
     const csrftoken = Cookies.get("csrftoken");
@@ -10,7 +13,7 @@ export const handleSignOut = async () => {
       },
       credentials: "include",
       body: JSON.stringify({
-        refresh: session.refreshToken,
+        refresh: refreshToken,
       }),
     }).then((response) => {
       console.log(response);

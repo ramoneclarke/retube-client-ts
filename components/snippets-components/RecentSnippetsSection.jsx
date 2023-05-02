@@ -7,13 +7,14 @@ import SnippetWindow from "./NewSnippetWindow";
 const RecentSnippetsSection = ({
   data,
   isLoading,
+  isError,
   setSnippetWindowOpen,
   snippetWindowOpen,
   startTimeSeconds,
   endTimeSeconds,
   setSelectedSnippetData,
 }) => {
-  if (isLoading) {
+  if (!data) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center gap-6 pb-10">
         <PropagateLoader color="#6EE7B7" />
@@ -28,9 +29,9 @@ const RecentSnippetsSection = ({
         </h2>
       </div>
       <div className="flex w-4/5 justify-center">
-        <div className="flex h-full w-full flex-row flex-wrap gap-4">
+        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-4">
           {" "}
-          {data?.map((snippet) => (
+          {data.map((snippet) => (
             <Card
               key={snippet.id}
               snippet={snippet}

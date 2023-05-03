@@ -45,12 +45,9 @@ const SnippetsControls = ({
             {formatTimeFromSeconds(endTimeSeconds)}
           </p>
         </div>
-        <div className="flex w-full flex-row items-center justify-start gap-2">
+        <div className="flex w-full flex-row items-center justify-start gap-4 gap-2 px-8">
           {/* Start */}
-          <InfoTooltip />
-          <p className="w-[14%] text-base font-normal text-slate-400">
-            Snippet time:{" "}
-          </p>
+          <InfoTooltip text="Drag the sliders to set the start and end times for your snippet" />
           <SnippetSlider
             endTimeSeconds={endTimeSeconds}
             maxTimeSeconds={videoDuration}

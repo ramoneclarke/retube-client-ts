@@ -41,8 +41,6 @@ const SnippetsPage = ({ initialSnippets }) => {
     }
   );
 
-  console.log(data);
-
   const snippetMutation = useMutation({
     mutationFn: (mutationArgs) => {
       const { id, start, end, token } = mutationArgs;
@@ -59,8 +57,6 @@ const SnippetsPage = ({ initialSnippets }) => {
       }
     },
   });
-
-  console.log(snippetMutation.data);
 
   const opts = {
     playerVars: {
@@ -171,33 +167,29 @@ const SnippetsPage = ({ initialSnippets }) => {
 };
 
 const createSnippet = async (videoId, start, end, token) => {
-  try {
-    const csrftoken = Cookies.get("csrftoken");
-    console.log("ACCESS TOKEN: ", token);
-    const response = await fetch(
-      `
+  const csrftoken = Cookies.get("csrftoken");
+  console.log("ACCESS TOKEN: ", token);
+  const response = await fetch(
+    `
         ${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/tools/text-snippet/
         `,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken,
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          video_id: videoId,
-          start: start,
-          end: end,
-        }),
-      }
-    );
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        video_id: videoId,
+        start: start,
+        end: end,
+      }),
+    }
+  );
+  const data = await response.json();
+  return data;
 };
 
 const getSnippets = async (token) => {

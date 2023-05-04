@@ -15,20 +15,30 @@ const SnippetsControls = ({
   snippetMutation,
   setNewSnippetWindowOpen,
   userData,
+  setMaxUsage,
 }) => {
   const { data: session, status, update } = useRefetchingSession();
+
+  const snippetsUsage = userData?.subscription.snippets_usage;
+  const snippetsMonthlyLimit =
+    userData?.subscription.plan.snippets_monthly_limit;
 
   console.log(session);
 
   const handleClick = () => {
-    if (videoId && videoDuration > 0) {
-      snippetMutation.mutate({
-        id: videoId,
-        start: startTimeSeconds,
-        end: endTimeSeconds,
-        token: session.accessToken,
-      });
+    if (snippetsUsage >= snippetsMonthlyLimit) {
+      setMaxUsage(true);
       setNewSnippetWindowOpen(true);
+    } else {
+      if (videoId && videoDuration > 0) {
+        snippetMutation.mutate({
+          id: videoId,
+          start: startTimeSeconds,
+          end: endTimeSeconds,
+          token: session.accessToken,
+        });
+        setNewSnippetWindowOpen(true);
+      }
     }
   };
 

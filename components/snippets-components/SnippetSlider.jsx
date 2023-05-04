@@ -8,11 +8,6 @@ const SnippetSlider = ({
   setEndTimeSeconds,
   userData,
 }) => {
-  console.log("userData = ", userData);
-
-  const snippetsUsage = userData?.subscription.snippets_usage;
-  const snippetsMonthlyLimit =
-    userData?.subscription.plan.snippets_monthly_limit;
   const snippetsMaxLength = userData?.subscription.plan.snippets_max_length;
 
   const [sliderColorLight, setSliderColorLight] = useState("e2e8f0"); //slate200

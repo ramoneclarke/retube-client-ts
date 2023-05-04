@@ -30,6 +30,7 @@ const SnippetsPage = ({ initialSnippets }) => {
   const [snippetWindowOpen, setSnippetWindowOpen] = useState(false);
   const [newSnippetWindowOpen, setNewSnippetWindowOpen] = useState(false);
   const [selectedSnippetData, setSelectedSnippetData] = useState(null);
+  const [maxUsage, setMaxUsage] = useState(false);
 
   const { data: session, update } = useRefetchingSession();
 
@@ -134,6 +135,7 @@ const SnippetsPage = ({ initialSnippets }) => {
             newSnippetWindowOpen={newSnippetWindowOpen}
             setNewSnippetWindowOpen={setNewSnippetWindowOpen}
             userData={userData}
+            setMaxUsage={setMaxUsage}
           />
           <RecentSnippetsSection
             data={data}
@@ -153,6 +155,8 @@ const SnippetsPage = ({ initialSnippets }) => {
                 snippetMutation={snippetMutation}
                 startTimeSeconds={startTimeSeconds}
                 endTimeSeconds={endTimeSeconds}
+                maxUsage={maxUsage}
+                setMaxUsage={setMaxUsage}
               />
             ) : null}
           </AnimatePresence>

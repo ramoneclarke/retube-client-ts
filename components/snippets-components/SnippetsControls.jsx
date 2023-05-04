@@ -14,6 +14,7 @@ const SnippetsControls = ({
   videoId,
   snippetMutation,
   setNewSnippetWindowOpen,
+  userData,
 }) => {
   const { data: session, status, update } = useRefetchingSession();
 
@@ -53,6 +54,7 @@ const SnippetsControls = ({
             maxTimeSeconds={videoDuration}
             setStartTimeSeconds={setStartTimeSeconds}
             setEndTimeSeconds={setEndTimeSeconds}
+            userData={userData}
           />
           <motion.button
             onClick={handleClick}

@@ -16,6 +16,7 @@ import NewSnippetWindow from "./NewSnippetWindow";
 import SnippetWindow from "./SnippetWindow";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getSession } from "next-auth/react";
+import { useUserData } from "@/hooks/useUserData";
 
 const SnippetsPage = ({ initialSnippets }) => {
   const defaultEndTime = 60;
@@ -32,7 +33,13 @@ const SnippetsPage = ({ initialSnippets }) => {
 
   const { data: session, update } = useRefetchingSession();
 
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
+  const {
+    isLoading: isLoadingUserData,
+    data: userData,
+    refetch: refetchUserData,
+  } = useUserData();
+
+  const { isLoading, data, isError, refetch } = useQuery(
     ["snippets"],
     () => getSnippets(session.accessToken),
     {
@@ -126,6 +133,7 @@ const SnippetsPage = ({ initialSnippets }) => {
             snippetMutation={snippetMutation}
             newSnippetWindowOpen={newSnippetWindowOpen}
             setNewSnippetWindowOpen={setNewSnippetWindowOpen}
+            userData={userData}
           />
           <RecentSnippetsSection
             data={data}

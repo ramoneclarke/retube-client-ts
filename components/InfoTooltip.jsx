@@ -1,5 +1,4 @@
 import { TooltipArrow } from "@radix-ui/react-tooltip";
-import Link from "next/link";
 import React from "react";
 import { ImInfo } from "react-icons/im";
 import {
@@ -15,9 +14,7 @@ const InfoTooltip = ({ text }) => {
       <Tooltip>
         <TooltipTrigger>
           {" "}
-          <Link href="/account">
-            <ImInfo className="cursor-pointer text-xl text-darker dark:text-lighter" />
-          </Link>
+          <ImInfo className="cursor-pointer text-xl text-darker dark:text-lighter" />
         </TooltipTrigger>
         <TooltipContent className="mr-2 bg-lightest text-darkest dark:border-darker dark:bg-dark dark:text-lightest">
           <TooltipArrow className="fill-lightest dark:fill-dark" />

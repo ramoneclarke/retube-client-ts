@@ -18,7 +18,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { getSession } from "next-auth/react";
 import { useUserData } from "@/hooks/useUserData";
 
-const SnippetsPage = ({ initialSnippets }) => {
+const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const defaultEndTime = 60;
   const [startTimeSeconds, setStartTimeSeconds] = useState(0);
   const [endTimeSeconds, setEndTimeSeconds] = useState(defaultEndTime);
@@ -38,7 +38,7 @@ const SnippetsPage = ({ initialSnippets }) => {
     isLoading: isLoadingUserData,
     data: userData,
     refetch: refetchUserData,
-  } = useUserData();
+  } = useUserData(initialUserData);
 
   const { isLoading, data, isError, refetch } = useQuery(
     ["snippets"],
@@ -55,10 +55,11 @@ const SnippetsPage = ({ initialSnippets }) => {
       return createSnippet(id, start, end, token);
     },
     onSuccess: () => {
-      // refreshSnippets(update, refetch);
       try {
-        update().then(() => refetch());
-        console.log("refreshing snippets");
+        update().then(() => {
+          refetch();
+          refetchUserData();
+        });
       } catch (error) {
         console.log(error);
         return null;

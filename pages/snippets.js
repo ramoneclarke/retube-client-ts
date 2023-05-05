@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import Head from "next/head";
 import React from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
+import { getUserData } from "@/hooks/useUserData";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -46,14 +47,17 @@ export async function getServerSideProps(context) {
     console.log(err);
   }
 
+  const userData = await getUserData(accessToken);
+
   return {
     props: {
+      userData: userData,
       initialSnippets: snippets,
     },
   };
 }
 
-const Snippets = ({ initialSnippets }) => {
+const Snippets = ({ userData, initialSnippets }) => {
   const { darkMode, toggleDarkMode } = useColorMode();
 
   return (
@@ -63,7 +67,10 @@ const Snippets = ({ initialSnippets }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={`${darkMode && "dark"}`}>
-        <SnippetsPage initialSnippets={initialSnippets} />
+        <SnippetsPage
+          initialUserData={userData}
+          initialSnippets={initialSnippets}
+        />
       </main>
     </>
   );

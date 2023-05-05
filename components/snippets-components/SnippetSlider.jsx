@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
+import { useColorMode } from "@/context/ColorModeContext";
 
 const SnippetSlider = ({
   endTimeSeconds,
@@ -8,6 +9,7 @@ const SnippetSlider = ({
   setEndTimeSeconds,
   userData,
 }) => {
+  const { darkMode } = useColorMode();
   const snippetsMaxLength = userData?.subscription.plan.snippets_max_length;
 
   const [sliderColorLight, setSliderColorLight] = useState("e2e8f0"); //slate200
@@ -20,10 +22,12 @@ const SnippetSlider = ({
       setSliderColorLight("e2e8f0");
       setSliderColorDark("433E5A");
     } else {
-      setSliderColorLight("ef4444");
-      setSliderColorDark("ef4444");
+      setSliderColorLight("f87171");
+      setSliderColorDark("f87171");
     }
   };
+
+  console.log("sliderColorLight = ", sliderColorLight);
 
   return (
     <Slider.Root
@@ -37,7 +41,12 @@ const SnippetSlider = ({
       aria-label="Volume"
     >
       <Slider.Track
-        className={`relative h-2 flex-grow rounded-full bg-[#${sliderColorLight}]  dark:bg-[#${sliderColorDark}]`}
+        className={`rounded-full] relative h-2 flex-grow`}
+        style={{
+          backgroundColor: darkMode
+            ? `#${sliderColorDark}`
+            : `#${sliderColorLight}`,
+        }}
       >
         <Slider.Range className="absolute h-full rounded-[9999px] bg-darker dark:bg-lighter" />
       </Slider.Track>

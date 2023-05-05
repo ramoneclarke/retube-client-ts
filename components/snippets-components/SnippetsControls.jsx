@@ -17,7 +17,7 @@ const SnippetsControls = ({
   userData,
   setMaxUsage,
 }) => {
-  const { data: session, status, update } = useRefetchingSession();
+  const { data: session } = useRefetchingSession();
 
   const snippetsUsage = userData?.subscription.snippets_usage;
   const snippetsMonthlyLimit =
@@ -43,7 +43,7 @@ const SnippetsControls = ({
   };
 
   return (
-    <div className="mb-12 flex w-4/5 flex-col items-center gap-y-8 rounded-xl bg-lightest p-8 shadow-md dark:bg-darker">
+    <div className="mb-12 flex w-4/5 flex-col items-center gap-y-8 rounded-xl bg-lightest p-8 shadow-md dark:bg-slate-800">
       <div className="flex w-full flex-col items-center gap-2">
         {/* Controls */}
         <div className="mb-4 flex  h-14 w-60 flex-row items-center justify-center gap-4 rounded-xl bg-slate-200 text-2xl font-medium dark:bg-light">
@@ -68,7 +68,7 @@ const SnippetsControls = ({
           />
           <motion.button
             onClick={handleClick}
-            className="h-12 w-24 rounded-xl bg-brand font-medium text-darkest shadow-md dark:bg-brand"
+            className="h-12 w-24 rounded-xl bg-brand font-medium text-darkest shadow-md dark:bg-brand dark:font-semibold"
             whileTap={{
               scale: 0.9,
             }}

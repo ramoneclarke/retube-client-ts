@@ -25,7 +25,7 @@ const NewSnippetWindow = ({
   if (maxUsage) {
     return (
       <motion.div
-        className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg"
+        className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg dark:bg-darker"
         initial={{ x: 1500 }}
         animate={{ x: 0 }}
         exit={{ x: 1500 }}
@@ -34,7 +34,7 @@ const NewSnippetWindow = ({
         <div className="absolute top-4 right-4 flex w-full flex-row justify-end">
           {" "}
           <IoClose
-            className="cursor-pointer text-5xl text-dark"
+            className="cursor-pointer text-5xl text-dark dark:text-light"
             onClick={handleClose}
           />
         </div>
@@ -46,8 +46,8 @@ const NewSnippetWindow = ({
             </p>{" "}
           </div>
           <p className="text-center text-xl text-darkest dark:text-lightest">
-            Upgrade to a premium account to unlock a higher snippet limit and
-            more advanced features.{" "}
+            Upgrade your account to unlock a higher snippet limit and more
+            advanced features.{" "}
             <Link href="/account" className="font-medium">
               Click here to upgrade.
             </Link>
@@ -60,7 +60,7 @@ const NewSnippetWindow = ({
     console.log(snippetMutation.error);
     return (
       <motion.div
-        className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg"
+        className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg dark:bg-darker"
         initial={{ x: 1500 }}
         animate={{ x: 0 }}
         exit={{ x: 1500 }}
@@ -69,12 +69,12 @@ const NewSnippetWindow = ({
         <div className="absolute top-4 right-4 flex w-full flex-row justify-end">
           {" "}
           <IoClose
-            className="cursor-pointer text-5xl text-dark"
+            className="cursor-pointer text-5xl text-dark dark:text-light"
             onClick={() => setSnippetWindowOpen(!snippetWindowOpen)}
           />
         </div>
-        <div className="flex h-full w-full flex-row items-center justify-center gap-2 p-8">
-          <BiErrorCircle className="text-5xl text-red-400" />
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-8">
+          <BiErrorCircle className="text-9xl text-red-400" />
           <p className="text-xl text-red-400">
             An error occurred while creating the snippet. Please try again.
           </p>{" "}
@@ -84,7 +84,7 @@ const NewSnippetWindow = ({
   }
   return (
     <motion.div
-      className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg"
+      className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg dark:bg-darker"
       initial={{ x: 1500 }}
       animate={{ x: 0 }}
       exit={{ x: 1500 }}
@@ -93,7 +93,7 @@ const NewSnippetWindow = ({
       <div className="absolute top-4 right-4 flex w-full flex-row justify-end">
         {" "}
         <IoClose
-          className="cursor-pointer text-5xl text-dark"
+          className="cursor-pointer text-5xl text-dark dark:text-light"
           onClick={() => setSnippetWindowOpen(!snippetWindowOpen)}
         />
       </div>

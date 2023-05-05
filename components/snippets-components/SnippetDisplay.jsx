@@ -21,14 +21,14 @@ const SnippetDisplay = ({
             {/* Video title  */}
             <div className="flex h-16 w-full items-center gap-4">
               <h2 className="w-28 text-lg text-gray-400">Video Title: </h2>
-              <p className="flex h-full items-center px-4 text-lg">
+              <p className="flex h-full items-center px-4 text-lg text-darkest dark:text-lightest">
                 {snippetMutation?.data?.video?.title}
               </p>
             </div>
             {/* Snippet timestamps */}
             <div className="flex h-16 w-full items-center gap-4">
               <h2 className="w-28 text-lg text-gray-400">Time: </h2>
-              <p className="flex h-full items-center px-4 text-lg">
+              <p className="flex h-full items-center px-4 text-lg text-darkest dark:text-lightest">
                 {formatTimeFromSeconds(startTimeSeconds)} -{" "}
                 {formatTimeFromSeconds(endTimeSeconds)}
               </p>
@@ -60,8 +60,10 @@ const SnippetDisplay = ({
         {/* Snippet text */}
         <div className="flex h-full w-full gap-4 pt-4">
           <h2 className="w-28 text-lg text-gray-400">Snippet: </h2>
-          <div className="flex h-fit min-h-full w-full flex-1 overflow-y-auto rounded-3xl bg-lighter p-4 text-lg shadow-md">
-            <p className="">{snippetMutation?.data?.text}</p>
+          <div className="flex h-fit min-h-full w-full flex-1 overflow-y-auto rounded-3xl bg-lighter p-4 text-lg shadow-md dark:bg-slate-700">
+            <p className="text-darkest dark:text-lightest">
+              {snippetMutation?.data?.text}
+            </p>
           </div>
         </div>
       </div>
@@ -74,14 +76,14 @@ const SnippetDisplay = ({
             {/* Video title  */}
             <div className="flex h-16 w-full items-center gap-4">
               <h2 className="w-28 text-lg text-gray-400">Video Title: </h2>
-              <p className="flex h-full items-center px-4 text-lg">
+              <p className="flex h-full items-center px-4 text-lg text-darkest dark:text-lightest">
                 {existingSnippetData?.video?.title}
               </p>
             </div>
             {/* Snippet timestamps */}
             <div className="flex h-16 w-full items-center gap-4">
               <h2 className="w-28 text-lg text-gray-400">Time: </h2>
-              <p className="flex h-full items-center px-4 text-lg">
+              <p className="flex h-full items-center px-4 text-lg text-darkest dark:text-lightest">
                 {formatTimeFromSeconds(startTimeSeconds)} -{" "}
                 {formatTimeFromSeconds(endTimeSeconds)}
               </p>
@@ -111,8 +113,10 @@ const SnippetDisplay = ({
         {/* Snippet text */}
         <div className="flex h-full w-full gap-4 pt-4">
           <h2 className="w-28 text-lg text-gray-400">Snippet: </h2>
-          <div className="flex h-fit min-h-full w-full flex-1 overflow-y-auto rounded-3xl bg-lighter p-4 text-lg shadow-md">
-            <p className="">{existingSnippetData?.text}</p>
+          <div className="flex h-fit min-h-full w-full flex-1 overflow-y-auto rounded-3xl bg-lighter p-4 text-lg shadow-md dark:bg-slate-700">
+            <p className="text-darkest dark:text-lightest">
+              {existingSnippetData?.text}
+            </p>
           </div>
         </div>
       </div>

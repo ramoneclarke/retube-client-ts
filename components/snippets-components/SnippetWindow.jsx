@@ -6,7 +6,6 @@ import { PropagateLoader } from "react-spinners";
 import SnippetDisplay from "./SnippetDisplay";
 
 const SnippetWindow = ({
-  snippetWindowOpen,
   setSnippetWindowOpen,
   startTimeSeconds,
   endTimeSeconds,
@@ -19,7 +18,7 @@ const SnippetWindow = ({
   };
   return (
     <motion.div
-      className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg"
+      className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg dark:bg-darker"
       initial={{ x: 1500 }}
       animate={{ x: 0 }}
       exit={{ x: 1500 }}
@@ -28,7 +27,7 @@ const SnippetWindow = ({
       <div className="absolute top-4 right-4 flex w-full flex-row justify-end">
         {" "}
         <IoClose
-          className="cursor-pointer text-5xl text-dark"
+          className="cursor-pointer text-5xl text-dark dark:text-light"
           onClick={handleClose}
         />
       </div>

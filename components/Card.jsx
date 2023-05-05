@@ -20,7 +20,7 @@ const Card = ({
 
   return (
     <motion.div
-      className="flex h-96 w-[31%] cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest/50 p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-darker/70"
+      className="flex h-96 w-[31%] cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest/50 p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800"
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.3 },
@@ -29,7 +29,7 @@ const Card = ({
       onClick={handleClick}
     >
       <div className="flex w-full flex-col items-center justify-center">
-        <p className="font-semibold text-darker line-clamp-1 dark:text-light">
+        <p className="font-semibold text-darker line-clamp-1 dark:text-lighter">
           {title}
         </p>
       </div>
@@ -46,7 +46,7 @@ const Card = ({
         />
       </div>
       <div className="flex h-full w-full flex-col">
-        <p className="text-dark line-clamp-5 dark:text-gray-500">
+        <p className="text-dark line-clamp-5 dark:text-light">
           &quot;{text}&quot;
         </p>
       </div>

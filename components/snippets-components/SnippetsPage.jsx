@@ -163,7 +163,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
           <AnimatePresence>
             {snippetWindowOpen ? (
               <SnippetWindow
-                snippetWindowOpen={snippetWindowOpen}
                 setSnippetWindowOpen={setSnippetWindowOpen}
                 startTimeSeconds={startTimeSeconds}
                 endTimeSeconds={endTimeSeconds}

@@ -19,7 +19,9 @@ import { getSession } from "next-auth/react";
 import { useUserData } from "@/hooks/useUserData";
 
 const SnippetsPage = ({ initialUserData, initialSnippets }) => {
-  const defaultEndTime = 60;
+  const snippetsMaxLength =
+    initialUserData.subscription.plan.snippets_max_length;
+  const defaultEndTime = snippetsMaxLength > 60 ? 60 : snippetsMaxLength;
   const [startTimeSeconds, setStartTimeSeconds] = useState(0);
   const [endTimeSeconds, setEndTimeSeconds] = useState(defaultEndTime);
   const debouncedStartTimeSeconds = useDebounce(startTimeSeconds, 1000);
@@ -34,11 +36,8 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
 
   const { data: session, update } = useRefetchingSession();
 
-  const {
-    isLoading: isLoadingUserData,
-    data: userData,
-    refetch: refetchUserData,
-  } = useUserData(initialUserData);
+  const { data: userData, refetch: refetchUserData } =
+    useUserData(initialUserData);
 
   const { isLoading, data, isError, refetch } = useQuery(
     ["snippets"],

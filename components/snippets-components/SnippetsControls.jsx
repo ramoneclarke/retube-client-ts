@@ -56,7 +56,7 @@ const SnippetsControls = ({
             {formatTimeFromSeconds(endTimeSeconds)}
           </p>
         </div>
-        <div className="flex w-full flex-row items-center justify-start gap-4 gap-2 px-8">
+        <div className="flex w-full flex-row items-center justify-start gap-4 px-8">
           {/* Start */}
           <InfoTooltip text="Drag the sliders to set the start and end times for your snippet" />
           <SnippetSlider

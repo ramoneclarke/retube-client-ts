@@ -1,8 +1,6 @@
-import { AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React from "react";
 import { PropagateLoader } from "react-spinners";
-import Card from "../Card";
-import SnippetWindow from "./NewSnippetWindow";
+import Card from "../Shared/Card";
 
 const RecentSnippetsSection = ({
   data,

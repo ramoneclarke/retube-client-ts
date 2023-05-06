@@ -1,7 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import SnippetWindow from "./snippets-components/SnippetWindow";
 
 const Card = ({
   snippet,

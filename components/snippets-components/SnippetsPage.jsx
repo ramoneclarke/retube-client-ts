@@ -2,10 +2,8 @@ import { withAuth } from "@/utils/withAuth";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
 import Layout from "../layout-components/Layout";
-import LinkActionButton from "../LinkActionButton";
-import LinkInput from "../LinkInput";
+import LinkInput from "../Shared/LinkInput";
 import RecentSnippetsSection from "./RecentSnippetsSection";
-import SnippetsControls from "./SnippetsControls";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { extractVideoId } from "@/utils/handlers";
 import Cookies from "js-cookie";
@@ -16,6 +14,8 @@ import SnippetWindow from "./SnippetWindow";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useUserData } from "@/hooks/useUserData";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import SnippetsControls from "./SnippetsControls";
+import LinkActionButton from "../Shared/LinkActionButton";
 
 const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const snippetsMaxLength =
@@ -137,7 +137,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
             videoDuration={videoDuration}
             videoId={videoId}
             snippetMutation={snippetMutation}
-            newSnippetWindowOpen={newSnippetWindowOpen}
             setNewSnippetWindowOpen={setNewSnippetWindowOpen}
             userData={userData}
             setMaxUsage={setMaxUsage}

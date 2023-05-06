@@ -1,7 +1,7 @@
 import NewSnippetWindow from "../NewSnippetWindow";
 
 const meta = {
-  title: "Layout/NewSnippetWindow",
+  title: "Snippets/NewSnippetWindow",
   component: NewSnippetWindow,
 };
 
@@ -10,6 +10,7 @@ export default meta;
 export const DefaultNewSnippetWindow = {
   args: {
     snippetWindowOpen: true,
+    setSnippetWindowOpen: null,
     snippetMutation: {
       data: {
         id: 1,
@@ -32,12 +33,14 @@ export const DefaultNewSnippetWindow = {
     startTimeSeconds: 0,
     endTimeSeconds: 60,
     maxUsage: false,
+    setMaxUsage: null,
   },
 };
 
 export const MaxUsageNewSnippetWindow = {
   args: {
     snippetWindowOpen: true,
+    setSnippetWindowOpen: null,
     startTimeSeconds: 0,
     endTimeSeconds: 60,
     maxUsage: true,

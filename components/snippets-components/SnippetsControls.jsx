@@ -2,8 +2,8 @@ import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import { motion } from "framer-motion";
 import React from "react";
-import InfoTooltip from "../InfoTooltip";
 import SnippetSlider from "./SnippetSlider";
+import InfoTooltip from "../Shared/InfoTooltip";
 
 const SnippetsControls = ({
   startTimeSeconds,

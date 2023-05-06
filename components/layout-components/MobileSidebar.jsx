@@ -25,7 +25,7 @@ const MobileSidebar = ({ open, setOpen, menuClicked, setMenuClicked }) => {
 
   return (
     <motion.div
-      className="z-10 flex h-[calc(100vh-4rem)] w-2/3 flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest lg:hidden"
+      className="absolute z-10 flex h-[calc(100vh-4rem)] w-2/3 flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest md:w-2/5 lg:hidden"
       initial={{ x: -800 }}
       animate={{
         x: 0,

@@ -23,15 +23,13 @@ const SnippetSlider = ({
       setSliderColorDark("433E5A");
     } else {
       setSliderColorLight("f87171");
-      setSliderColorDark("f87171");
+      setSliderColorDark("ef4444");
     }
   };
 
-  console.log("sliderColorLight = ", sliderColorLight);
-
   return (
     <Slider.Root
-      className="relative flex h-[20px] w-4/5 touch-none select-none items-center"
+      className="relative flex h-[20px] w-full touch-none select-none items-center lg:w-4/5"
       defaultValue={[0, endTimeSeconds]}
       onValueChange={(v) => handleSliderChange(v)}
       min={0}

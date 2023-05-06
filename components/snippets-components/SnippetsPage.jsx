@@ -1,4 +1,3 @@
-import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import { withAuth } from "@/utils/withAuth";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
@@ -15,8 +14,8 @@ import useRefetchingSession from "@/hooks/useRefetchingSession";
 import NewSnippetWindow from "./NewSnippetWindow";
 import SnippetWindow from "./SnippetWindow";
 import { useDebounce } from "@/hooks/useDebounce";
-import { getSession } from "next-auth/react";
 import { useUserData } from "@/hooks/useUserData";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const snippetsMaxLength =
@@ -33,6 +32,8 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const [newSnippetWindowOpen, setNewSnippetWindowOpen] = useState(false);
   const [selectedSnippetData, setSelectedSnippetData] = useState(null);
   const [maxUsage, setMaxUsage] = useState(false);
+
+  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   const { data: session, update } = useRefetchingSession();
 
@@ -66,6 +67,8 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
     },
   });
 
+  console.log("snippetMutation.data: ", snippetMutation.data);
+
   const opts = {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -75,6 +78,8 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
       fs: 0,
     },
   };
+
+  console.log(debouncedStartTimeSeconds);
 
   const setEndTimeToDuration = (e) => {
     const duration = e.target.getDuration();
@@ -95,29 +100,29 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   return (
     <>
       <Layout>
-        <div className="flex h-auto w-full flex-col items-center gap-8 pb-32">
-          <div className="flex h-16 w-4/5 flex-row gap-2">
+        <div className="mt-4 flex h-auto w-full flex-col items-center px-2 pb-32 md:gap-4 md:px-8 lg:mt-0 lg:gap-8 lg:px-0">
+          <div className="flex h-12 w-full flex-row gap-2 lg:h-16 lg:w-4/5">
             <LinkInput inputText={inputText} setInputText={setInputText} />
             <LinkActionButton
-              text="Load Video"
+              text={isMobile ? "Load" : "Load Video"}
               handleLoadVideo={handleLoadVideo}
               inputText={inputText}
             />
           </div>
-          <div className="flex h-fit min-h-[22.5rem] w-full justify-center">
+          <div className="my-4 flex h-[50vh] w-full items-center justify-center md:h-[30vh] lg:my-0 lg:h-fit lg:min-h-[22.5rem]">
             {videoId === "" ? (
-              <div className="relative flex h-80 w-2/3 items-center justify-center overflow-hidden rounded-xl bg-gray-200 shadow-md dark:bg-darker">
-                <div className="dark:tex h-fit w-fit text-xl font-normal text-gray-400">
+              <div className="relative flex h-full w-3/4 items-center justify-center overflow-hidden rounded-xl bg-gray-200 shadow-md dark:bg-darker lg:h-80 lg:w-2/3">
+                <div className="h-fit w-fit text-xl font-normal text-gray-400">
                   {/* <Image src={YoutubePlayButton} alt="youtube play logo" /> */}
                   No video loaded
                 </div>
               </div>
             ) : (
-              <div className="relative flex w-auto items-center justify-center overflow-hidden rounded-xl">
+              <div className="flex h-fit w-fit scale-75 items-center justify-center overflow-hidden rounded-xl md:w-auto md:scale-100 lg:w-auto lg:scale-100">
                 <YouTube
                   videoId={videoId}
                   opts={opts}
-                  className="flex"
+                  className="flex items-center overflow-hidden rounded-2xl md:rounded-none lg:rounded-none"
                   onReady={(e) => setEndTimeToDuration(e)}
                   // style={{ width: "100%", height: "100%" }}
                 />
@@ -139,12 +144,7 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
           />
           <RecentSnippetsSection
             data={data}
-            isLoading={isLoading}
-            isError={isError}
-            snippetWindowOpen={snippetWindowOpen}
             setSnippetWindowOpen={setSnippetWindowOpen}
-            startTimeSeconds={startTimeSeconds}
-            endTimeSeconds={endTimeSeconds}
             setSelectedSnippetData={setSelectedSnippetData}
           />
           <AnimatePresence>

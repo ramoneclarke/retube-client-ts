@@ -18,20 +18,20 @@ const SnippetWindow = ({
   };
   return (
     <motion.div
-      className="absolute right-0 z-20 flex h-[90vh] w-4/5 flex-col overflow-y-scroll rounded-xl bg-slate-200 p-6 shadow-lg dark:bg-darker"
+      className="absolute top-2 right-0 z-20 flex h-[98%] w-[98vw] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker md:w-4/5 lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6"
       initial={{ x: 1500 }}
       animate={{ x: 0 }}
       exit={{ x: 1500 }}
       transition={{ duration: 0.3, type: "tween" }}
     >
-      <div className="absolute top-4 right-4 flex w-full flex-row justify-end">
+      <div className="absolute top-2 right-2 flex w-full flex-row justify-end md:top-4 md:right-4 lg:top-4 lg:right-4">
         {" "}
         <IoClose
-          className="cursor-pointer text-5xl text-dark dark:text-light"
+          className="cursor-pointer text-3xl text-dark dark:text-light md:text-5xl lg:text-5xl"
           onClick={handleClose}
         />
       </div>
-      <div className="flex h-full w-full">
+      <div className="mt-6 flex h-full w-full lg:mt-0">
         <SnippetDisplay
           newSnippet={false}
           startTimeSeconds={startTimeSeconds}

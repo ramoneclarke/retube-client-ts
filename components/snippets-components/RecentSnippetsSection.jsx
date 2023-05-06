@@ -6,12 +6,7 @@ import SnippetWindow from "./NewSnippetWindow";
 
 const RecentSnippetsSection = ({
   data,
-  isLoading,
-  isError,
   setSnippetWindowOpen,
-  snippetWindowOpen,
-  startTimeSeconds,
-  endTimeSeconds,
   setSelectedSnippetData,
 }) => {
   if (!data) {
@@ -23,13 +18,13 @@ const RecentSnippetsSection = ({
   }
   return (
     <>
-      <div className="w-5/6">
-        <h2 className="text-xl font-semibold text-darker dark:text-lighter">
+      <div className="w-full lg:w-5/6">
+        <h2 className="mb-4 text-xl font-semibold text-darker dark:text-lighter lg:mb-0">
           Recent Snippets
         </h2>
       </div>
-      <div className="flex w-4/5 justify-center">
-        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-4">
+      <div className="flex w-full justify-center lg:w-4/5">
+        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-8 md:gap-4 lg:gap-4">
           {" "}
           {data.map((snippet) => (
             <Card

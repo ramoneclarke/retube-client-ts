@@ -111,14 +111,14 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
           </div>
           <div className="my-4 flex h-[50vh] w-full items-center justify-center md:h-[30vh] lg:my-0 lg:h-fit lg:min-h-[22.5rem]">
             {videoId === "" ? (
-              <div className="relative flex h-full w-3/4 items-center justify-center overflow-hidden rounded-xl bg-gray-200 shadow-md dark:bg-darker lg:h-80 lg:w-2/3">
+              <div className="relative flex h-full w-3/4 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-md dark:bg-darker lg:h-80 lg:w-2/3">
                 <div className="h-fit w-fit text-xl font-normal text-gray-400">
                   {/* <Image src={YoutubePlayButton} alt="youtube play logo" /> */}
                   No video loaded
                 </div>
               </div>
             ) : (
-              <div className="flex h-fit w-fit scale-75 items-center justify-center overflow-hidden rounded-xl md:w-auto md:scale-100 lg:w-auto lg:scale-100">
+              <div className="flex h-fit w-fit scale-75 items-center justify-center overflow-hidden rounded-lg md:w-auto md:scale-100 lg:w-auto lg:scale-100">
                 <YouTube
                   videoId={videoId}
                   opts={opts}

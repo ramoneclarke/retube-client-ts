@@ -33,6 +33,8 @@ module.exports = {
         brand: "#6EE7B7", //Toothpaste
         darkest: "#0f131a",
         darker: "#131c27",
+        // darkest: "#131c27",
+        // darker: "#0D111F",
         dark: "#433E5A",
         mid: "#6D59C0",
         light: "#DDDAE8",

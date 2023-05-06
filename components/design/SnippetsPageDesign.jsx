@@ -1,7 +1,7 @@
 import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
-import SnippetSlider from "../SnippetSlider";
+import SnippetSlider from "../snippets-components/SnippetSlider";
 import SnippetTileDesign from "./SnippetTileDesign";
 
 const SnippetsPageDesign = () => {

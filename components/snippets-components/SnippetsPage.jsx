@@ -2,10 +2,8 @@ import { withAuth } from "@/utils/withAuth";
 import React, { useState } from "react";
 import YouTube from "react-youtube";
 import Layout from "../layout-components/Layout";
-import LinkActionButton from "../LinkActionButton";
-import LinkInput from "../LinkInput";
+import LinkInput from "../Shared/LinkInput";
 import RecentSnippetsSection from "./RecentSnippetsSection";
-import SnippetsControls from "./SnippetsControls";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { extractVideoId } from "@/utils/handlers";
 import Cookies from "js-cookie";
@@ -16,6 +14,8 @@ import SnippetWindow from "./SnippetWindow";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useUserData } from "@/hooks/useUserData";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import SnippetsControls from "./SnippetsControls";
+import LinkActionButton from "../Shared/LinkActionButton";
 
 const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const snippetsMaxLength =
@@ -111,14 +111,14 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
           </div>
           <div className="my-4 flex h-[50vh] w-full items-center justify-center md:h-[30vh] lg:my-0 lg:h-fit lg:min-h-[22.5rem]">
             {videoId === "" ? (
-              <div className="relative flex h-full w-3/4 items-center justify-center overflow-hidden rounded-xl bg-gray-200 shadow-md dark:bg-darker lg:h-80 lg:w-2/3">
+              <div className="relative flex h-full w-3/4 items-center justify-center overflow-hidden rounded-lg bg-gray-200 shadow-md dark:bg-darker lg:h-80 lg:w-2/3">
                 <div className="h-fit w-fit text-xl font-normal text-gray-400">
                   {/* <Image src={YoutubePlayButton} alt="youtube play logo" /> */}
                   No video loaded
                 </div>
               </div>
             ) : (
-              <div className="flex h-fit w-fit scale-75 items-center justify-center overflow-hidden rounded-xl md:w-auto md:scale-100 lg:w-auto lg:scale-100">
+              <div className="flex h-fit w-fit scale-75 items-center justify-center overflow-hidden rounded-lg md:w-auto md:scale-100 lg:w-auto lg:scale-100">
                 <YouTube
                   videoId={videoId}
                   opts={opts}
@@ -137,7 +137,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
             videoDuration={videoDuration}
             videoId={videoId}
             snippetMutation={snippetMutation}
-            newSnippetWindowOpen={newSnippetWindowOpen}
             setNewSnippetWindowOpen={setNewSnippetWindowOpen}
             userData={userData}
             setMaxUsage={setMaxUsage}

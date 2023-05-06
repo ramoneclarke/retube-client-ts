@@ -1,4 +1,3 @@
-import { useColorMode } from "@/context/ColorModeContext";
 import { motion } from "framer-motion";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";

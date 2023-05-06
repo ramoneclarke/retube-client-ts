@@ -2,8 +2,8 @@ import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import Link from "next/link";
 import React, { useState } from "react";
 import { PropagateLoader } from "react-spinners";
-import ClipboardButton from "../ClipboardButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import ClipboardButton from "../Shared/ClipboardButton";
 
 const SnippetDisplay = ({
   newSnippet,

@@ -2,8 +2,8 @@ import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import { motion } from "framer-motion";
 import React from "react";
-import InfoTooltip from "../InfoTooltip";
 import SnippetSlider from "./SnippetSlider";
+import InfoTooltip from "../Shared/InfoTooltip";
 
 const SnippetsControls = ({
   startTimeSeconds,
@@ -43,7 +43,7 @@ const SnippetsControls = ({
   };
 
   return (
-    <div className="md-hfit mb-12 flex min-h-[30vh] w-full flex-col items-center gap-y-8 rounded-xl bg-lightest p-6 shadow-md dark:bg-slate-800 md:min-h-[10vh] lg:min-h-0 lg:w-4/5 lg:p-8">
+    <div className="md-hfit mb-12 flex min-h-[30vh] w-full flex-col items-center gap-y-8 rounded-lg bg-lightest p-6 shadow-md dark:bg-slate-800 md:min-h-[10vh] lg:min-h-0 lg:w-4/5 lg:p-8">
       <div className="flex w-full flex-col items-center gap-2">
         {/* Controls */}
         <div className="mb-4 flex h-14 w-60 flex-row items-center justify-center gap-4 rounded-xl bg-slate-200 text-2xl font-medium dark:bg-light">

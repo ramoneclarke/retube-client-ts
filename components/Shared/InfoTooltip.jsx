@@ -6,7 +6,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui-components/Tooltip";
+} from "../ui-components/Tooltip";
 
 const InfoTooltip = ({ text }) => {
   return (

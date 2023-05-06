@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "@/components/CheckoutForm";
 import { getCsrfToken } from "next-auth/react";
+import CheckoutForm from "@/components/Shared/CheckoutForm";
 
 const stripePromise = loadStripe(
   `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`

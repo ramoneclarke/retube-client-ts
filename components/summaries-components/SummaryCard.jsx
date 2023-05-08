@@ -4,7 +4,6 @@ import React from "react";
 
 const SummaryCard = ({
   summary,
-  text,
   title,
   videoId,
   setSelectedSummaryData,

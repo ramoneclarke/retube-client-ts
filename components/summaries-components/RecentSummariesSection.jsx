@@ -30,7 +30,6 @@ const RecentSummariesSection = ({
             <SummaryCard
               key={summary.id}
               summary={summary}
-              text={summary.bullet_points}
               title={summary.video.title}
               videoId={summary.video.video_id}
               setSelectedSummaryData={setSelectedSummaryData}

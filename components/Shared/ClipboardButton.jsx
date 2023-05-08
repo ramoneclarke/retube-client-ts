@@ -4,6 +4,11 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { BsClipboard, BsClipboardCheck } from "react-icons/bs";
 
 const ClipboardButton = ({ text, setCopied, copied, clipboardType }) => {
+  let formattedText;
+  if (clipboardType === "summary") {
+    formattedText = text.replace(/- /g, "- <br>");
+  }
+
   const handleCopyClick = () => {
     setCopied(true);
     // Set timeout to change copied back to false after 3 seconds (3000ms)
@@ -13,7 +18,10 @@ const ClipboardButton = ({ text, setCopied, copied, clipboardType }) => {
   };
 
   return (
-    <CopyToClipboard text={text} onCopy={handleCopyClick}>
+    <CopyToClipboard
+      text={clipboardType === "summary" ? formattedText : text}
+      onCopy={handleCopyClick}
+    >
       <motion.button
         className="flex w-full flex-row items-center justify-center gap-1 rounded-xl border-2 border-darker p-2 font-semibold text-darkest dark:border-lighter dark:text-lightest lg:w-52"
         animate={{

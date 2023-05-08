@@ -1,4 +1,4 @@
-import Card from "../Card";
+import Card from "../../snippets-components/Card";
 
 const meta = {
   title: "Shared/Card",

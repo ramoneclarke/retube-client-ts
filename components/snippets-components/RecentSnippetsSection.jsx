@@ -1,6 +1,6 @@
 import React from "react";
 import { PropagateLoader } from "react-spinners";
-import Card from "../Shared/Card";
+import Card from "./Card";
 
 const RecentSnippetsSection = ({
   data,
@@ -17,12 +17,12 @@ const RecentSnippetsSection = ({
   return (
     <>
       <div className="w-full lg:w-5/6">
-        <h2 className="mb-4 text-xl font-semibold text-darker dark:text-lighter lg:mb-0">
+        <h2 className="mb-4 text-base font-semibold text-darker dark:text-lighter lg:mb-0">
           Recent Snippets
         </h2>
       </div>
       <div className="flex w-full justify-center lg:w-4/5">
-        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-8 md:gap-4 lg:gap-4">
+        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-8 p-0 md:gap-4 md:p-0 lg:gap-4">
           {" "}
           {data.map((snippet) => (
             <Card

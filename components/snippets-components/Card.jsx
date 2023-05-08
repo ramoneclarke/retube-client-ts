@@ -28,7 +28,7 @@ const Card = ({
       onClick={handleClick}
     >
       <div className="flex w-full flex-col items-center justify-center">
-        <p className="font-semibold text-darker line-clamp-1 dark:text-lighter">
+        <p className="font-medium text-darker line-clamp-1 dark:text-lighter">
           {title}
         </p>
       </div>

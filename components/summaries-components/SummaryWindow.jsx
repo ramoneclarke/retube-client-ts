@@ -1,19 +1,18 @@
+import SummaryDisplay from "@/pages/designs/SummaryDisplay";
 import { motion } from "framer-motion";
 import React from "react";
 import { IoClose } from "react-icons/io5";
-import SnippetDisplay from "./SnippetDisplay";
 
-const SnippetWindow = ({
-  setSnippetWindowOpen,
-  startTimeSeconds,
-  endTimeSeconds,
-  existingSnippetData,
-  setSelectedSnippetData,
+const SummaryWindow = ({
+  setSummaryWindowOpen,
+  existingSummaryData,
+  setSelectedSummaryData,
 }) => {
   const handleClose = () => {
-    setSnippetWindowOpen(false);
-    setSelectedSnippetData(null);
+    setSummaryWindowOpen(false);
+    setSelectedSummaryData(null);
   };
+
   return (
     <motion.div
       className="absolute top-2 right-0 z-20 flex h-[98%] w-[98vw] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker md:w-4/5 lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6"
@@ -30,15 +29,13 @@ const SnippetWindow = ({
         />
       </div>
       <div className="mt-6 flex h-full w-full lg:mt-0">
-        <SnippetDisplay
-          newSnippet={false}
-          startTimeSeconds={startTimeSeconds}
-          endTimeSeconds={endTimeSeconds}
-          existingSnippetData={existingSnippetData}
+        <SummaryDisplay
+          newSummary={false}
+          existingSummaryData={existingSummaryData}
         />
       </div>
     </motion.div>
   );
 };
 
-export default SnippetWindow;
+export default SummaryWindow;

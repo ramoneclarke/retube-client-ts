@@ -67,8 +67,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
     },
   });
 
-  console.log("snippetMutation.data: ", snippetMutation.data);
-
   const opts = {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
@@ -100,7 +98,7 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   return (
     <>
       <Layout>
-        <div className="mt-4 flex h-auto w-full flex-col items-center px-2 pb-32 md:gap-4 md:px-8 lg:mt-0 lg:gap-8 lg:px-0">
+        <div className="mt-4 flex h-auto w-full flex-col items-center gap-0 px-4 pb-32 md:gap-4 md:px-8 lg:mt-0 lg:gap-8 lg:px-0">
           <div className="flex h-12 w-full flex-row gap-2 lg:h-16 lg:w-4/5">
             <LinkInput inputText={inputText} setInputText={setInputText} />
             <LinkActionButton
@@ -178,7 +176,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
 
 const createSnippet = async (videoId, start, end, token) => {
   const csrftoken = Cookies.get("csrftoken");
-  console.log("ACCESS TOKEN: ", token);
   const response = await fetch(
     `
         ${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/tools/text-snippet/

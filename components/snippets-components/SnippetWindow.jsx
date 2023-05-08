@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoClose } from "react-icons/io5";
-import { PropagateLoader } from "react-spinners";
 import SnippetDisplay from "./SnippetDisplay";
 
 const SnippetWindow = ({

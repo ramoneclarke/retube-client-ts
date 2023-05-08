@@ -3,7 +3,7 @@ import SummariesDetail from "./SummariesDetail";
 import { formatDuration } from "@/utils/utils";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
-const SummariesDetails = ({ userData }) => {
+const SummariesDetails = ({ userData, isMobile }) => {
   const summariesUsage = userData?.subscription.summaries_usage;
   const summariesMonthlyLimit =
     userData?.subscription.plan.summaries_monthly_limit;
@@ -11,8 +11,6 @@ const SummariesDetails = ({ userData }) => {
     userData?.subscription.plan.summaries_max_video_length
   );
   const totalSummaries = userData?.summaries.length;
-
-  const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
     <div className="mb-6 flex w-full flex-col items-center gap-y-8 rounded-lg bg-lightest p-3 shadow-md dark:bg-slate-800 md:h-fit md:min-h-[30vh] md:min-h-[10vh] md:p-6 lg:min-h-0 lg:w-4/5 lg:p-8">

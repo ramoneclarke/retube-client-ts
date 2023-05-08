@@ -1,7 +1,7 @@
-import Card from "../../snippets-components/Card";
+import Card from "../Card";
 
 const meta = {
-  title: "Shared/Card",
+  title: "Snippets/Card",
   component: Card,
 };
 

@@ -144,7 +144,7 @@ const SummariesPage = ({ initialUserData, initialSummaries }) => {
               />
             )}
           </div>
-          <SummariesDetails userData={userData} />
+          <SummariesDetails userData={userData} isMobile={isMobile} />
           <RecentSummariesSection
             data={data}
             setSummaryWindowOpen={setSummaryWindowOpen}

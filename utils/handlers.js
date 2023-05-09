@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { signOut } from "next-auth/react";
 
-export const handleSignOut = async (refreshToken) => {
+export const handleSignOut = async (refreshToken, router) => {
   try {
     // Call backend API to sign out user
     const csrftoken = Cookies.get("csrftoken");
@@ -20,7 +20,8 @@ export const handleSignOut = async (refreshToken) => {
     });
 
     // Sign out user on front end
-    await signOut({ redirect: false });
+    const data = await signOut({ redirect: false, callbackUrl: "/login" });
+    router.push(data.url);
   } catch (error) {
     console.error(error);
   }

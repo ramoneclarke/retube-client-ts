@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { signIn } from "next-auth/react";
+import LoginPage from "@/components/auth-components/LoginPage";
 
 export const withAuth = () => (Component) => {
   const WithAuth = (props) => {
@@ -15,13 +16,7 @@ export const withAuth = () => (Component) => {
     }, [session, status]);
 
     if (status !== "loading" && !session) {
-      return (
-        <>
-          Not signed in <br />
-          <button onClick={() => signIn("google")}>Sign in</button>
-          <pre>{"User is not logged in"}</pre>
-        </>
-      );
+      return <LoginPage />;
     } else {
       console.log(`status: ${status}`);
       return (

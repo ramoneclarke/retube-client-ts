@@ -161,8 +161,8 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
             {snippetWindowOpen ? (
               <SnippetWindow
                 setSnippetWindowOpen={setSnippetWindowOpen}
-                startTimeSeconds={startTimeSeconds}
-                endTimeSeconds={endTimeSeconds}
+                startTimeSeconds={selectedSnippetData.start}
+                endTimeSeconds={selectedSnippetData.end}
                 existingSnippetData={selectedSnippetData}
                 setSelectedSnippetData={setSelectedSnippetData}
               />

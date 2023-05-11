@@ -15,7 +15,6 @@ const RecentSummariesSection = ({
     );
   }
 
-  console.log(data);
   return (
     <>
       <div className="w-full lg:w-5/6">
@@ -26,15 +25,26 @@ const RecentSummariesSection = ({
       <div className="flex w-full justify-center lg:w-4/5">
         <div className="flex h-full w-full flex-row flex-wrap justify-start gap-8 p-0 md:gap-4 md:p-0 lg:gap-4">
           {" "}
+          {data.length === 0 ? (
+            <div className="px-4">
+              <p className="text-sm text-darkest dark:text-light">
+                No summaries created
+              </p>
+            </div>
+          ) : null}
           {data.map((summary) => (
-            <SummaryCard
+            <div
+              className="h-fit w-full md:h-[17rem] md:w-[31%] lg:h-[17rem] lg:w-[31%]"
               key={summary.id}
-              summary={summary}
-              title={summary.video.title}
-              videoId={summary.video.video_id}
-              setSelectedSummaryData={setSelectedSummaryData}
-              setSummaryWindowOpen={setSummaryWindowOpen}
-            />
+            >
+              <SummaryCard
+                summary={summary}
+                title={summary.video.title}
+                videoId={summary.video.video_id}
+                setSelectedSummaryData={setSelectedSummaryData}
+                setSummaryWindowOpen={setSummaryWindowOpen}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -40,6 +40,7 @@ module.exports = {
         light: "#DDDAE8",
         lighter: "#F5F5F5",
         lightest: "#FFFFFF",
+        brandDark: "#00dc9b",
       },
     },
   },

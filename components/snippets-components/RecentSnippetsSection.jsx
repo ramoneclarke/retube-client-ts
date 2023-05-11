@@ -23,17 +23,27 @@ const RecentSnippetsSection = ({
       </div>
       <div className="flex w-full justify-center lg:w-4/5">
         <div className="flex h-full w-full flex-row flex-wrap justify-center gap-8 p-0 md:gap-4 md:p-0 lg:gap-4">
-          {" "}
+          {data.length === 0 ? (
+            <div className="px-4">
+              <p className="text-sm text-darkest dark:text-light">
+                No snippets created
+              </p>
+            </div>
+          ) : null}
           {data.map((snippet) => (
-            <Card
+            <div
+              className="h-fit w-full md:w-[31%] lg:h-96 lg:w-[31%]"
               key={snippet.id}
-              snippet={snippet}
-              text={snippet.text}
-              title={snippet.video.title}
-              videoId={snippet.video.video_id}
-              setSelectedSnippetData={setSelectedSnippetData}
-              setSnippetWindowOpen={setSnippetWindowOpen}
-            />
+            >
+              <Card
+                snippet={snippet}
+                text={snippet.text}
+                title={snippet.video.title}
+                videoId={snippet.video.video_id}
+                setSelectedSnippetData={setSelectedSnippetData}
+                setSnippetWindowOpen={setSnippetWindowOpen}
+              />
+            </div>
           ))}
         </div>
       </div>

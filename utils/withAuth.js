@@ -11,14 +11,12 @@ export const withAuth = () => (Component) => {
     useEffect(() => {
       if (status === "authenticated") {
         setCachedSession(session);
-        console.log("Set cachedSession to updated session");
       }
     }, [session, status]);
 
     if (status !== "loading" && !session) {
       return <LoginPage />;
     } else {
-      console.log(`status: ${status}`);
       return (
         <Component
           session={cachedSession}

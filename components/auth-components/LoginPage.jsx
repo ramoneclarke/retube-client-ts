@@ -15,7 +15,7 @@ const LoginPage = () => {
         </h1>
         <SignInWithGoogleButton />
         <div className="">
-          <p className="">
+          <p className="text-darkest dark:text-lightest">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="font-medium text-mid">
               Sign up

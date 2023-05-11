@@ -3,9 +3,12 @@ import { handleSignOut } from "@/utils/handlers";
 import { withAuth } from "@/utils/withAuth";
 import React from "react";
 import Layout from "../layout-components/Layout";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
   const { data: session, status, update } = useRefetchingSession();
+
+  const router = useRouter();
 
   return (
     <div>
@@ -23,7 +26,7 @@ const Dashboard = () => {
         {status === "authenticated" && session && (
           <>
             Signed in as {session.user.email} <br />
-            <button onClick={() => handleSignOut(session.refreshToken)}>
+            <button onClick={() => handleSignOut(session.refreshToken, router)}>
               Sign out
             </button>
             {session.accessToken && <pre>User has access token</pre>}

@@ -15,7 +15,7 @@ const SignUpPage = () => {
         </h1>
         <SignUpWithGoogleButton />
         <div className="">
-          <p className="">
+          <p className="text-darkest dark:text-lightest">
             Already have an account?{" "}
             <Link href="/login" className="font-medium text-mid">
               Log in

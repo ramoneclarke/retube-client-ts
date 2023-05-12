@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { GiCheckMark } from "react-icons/gi";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatDuration } from "@/utils/utils";
+import PlanBenefit from "./PlanBenefit";
 
 const PlanTile = ({
   planName,
@@ -88,65 +89,34 @@ const PlanTile = ({
       )}
       {/* Features */}
       <div className="mt-8 flex w-full flex-col gap-2">
-        <div className="flex h-12 flex-row items-center gap-2">
-          <div className="flex items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>
-          <p className="">Create and save text snippets from youtube clips</p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="">Generate summaries of youtube videos</p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="">
-            Search though a playlist of Youtube videos (Coming soon)
-          </p>{" "}
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="font-semibold">
-            {snippetsMonthlyLimit} Snippets per month
-          </p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="font-semibold">
-            Snippet max length: {formatDuration(snippetsMaxLength)}
-          </p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="font-semibold">
-            {summariesMonthlyLimit} Summaries per month
-          </p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="font-semibold">
-            Summaries max video length:{" "}
-            {formatDuration(summariesMaxVideoLength)}
-          </p>
-        </div>
-        <div className="flex flex-row items-center gap-2">
-          <div className="flex h-12 items-center justify-center">
-            <GiCheckMark className="text-2xl text-brand" />{" "}
-          </div>{" "}
-          <p className="">Search Playlists: Coming soon!</p>
-        </div>
+        <PlanBenefit text="Create and save text snippets from youtube clips" />
+        <PlanBenefit text="Generate summaries of youtube videos" />
+        <PlanBenefit
+          text="            Search though a playlist of Youtube videos (Coming soon)
+"
+        />
+        <PlanBenefit
+          text={`${snippetsMonthlyLimit} Snippets per month`}
+          bold={true}
+        />
+        <PlanBenefit
+          text={`            Snippet max length: ${formatDuration(
+            snippetsMaxLength
+          )}
+`}
+          bold={true}
+        />
+        <PlanBenefit
+          text={`            ${summariesMonthlyLimit} Summaries per month
+`}
+          bold={true}
+        />
+        <PlanBenefit
+          text={`  Summaries max video length:{" "}
+            ${formatDuration(summariesMaxVideoLength)}`}
+          bold={true}
+        />
+        <PlanBenefit text="Search Playlists: Coming soon!" />
       </div>
     </div>
   );

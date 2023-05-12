@@ -36,7 +36,7 @@ const AccountPage = ({ createPortalSession, initialUserData }) => {
               selectedBillingType={selectedBillingType}
             />
           </div>
-          <div className="flex w-full px-8 md:p-8 md:px-0">
+          <div className="flex w-full px-8 md:py-8">
             <SubscriptionPlans
               selectedBillingType={selectedBillingType}
               userData={userData}

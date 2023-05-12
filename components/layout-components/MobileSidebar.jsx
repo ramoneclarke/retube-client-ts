@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { useClickOutside } from "react-click-outside-hook";
 import SidebarButton from "./SidebarButton";
+import UserIdentity from "./UserIdentity";
 
 const MobileSidebar = ({ open, setOpen, menuClicked, setMenuClicked }) => {
   const [ref, hasClickedOutside] = useClickOutside();
@@ -40,23 +41,8 @@ const MobileSidebar = ({ open, setOpen, menuClicked, setMenuClicked }) => {
         ))}
       </div>
       <div className="flex w-full flex-col items-center">
-        <div className="justify-left mb-4 flex h-11 w-5/6 cursor-pointer flex-row items-center gap-x-3 rounded-lg pl-3  hover:bg-lighter dark:hover:bg-dark">
-          <SidebarButton
-            link={{
-              text: "Account",
-              icon: <FaUserCircle size="1.3rem" className="text-brand" />,
-              path: "/account",
-            }}
-          />
-        </div>
-        <div className="justify-left mb-4 flex h-11 w-5/6 cursor-pointer flex-row items-center gap-x-3 rounded-lg pl-3  hover:bg-lighter dark:hover:bg-dark">
-          <SidebarButton
-            link={{
-              text: "Settings",
-              icon: <FaCog size="1.3rem" className="text-brand" />,
-              path: "/settings",
-            }}
-          />
+        <div className="mb-4 flex w-full cursor-pointer flex-row items-center justify-start px-2">
+          <UserIdentity />
         </div>
       </div>
     </motion.div>

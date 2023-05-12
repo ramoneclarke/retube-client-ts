@@ -1,29 +1,41 @@
-import SubscriptionPlans from "@/components/account-components/SubscriptionPlans";
-import React, { useEffect } from "react";
+import React from "react";
 import Cookies from "js-cookie";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import AccountPage from "@/components/account-components/AccountPage";
+import { useColorMode } from "@/context/ColorModeContext";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { getUserData } from "@/hooks/useUserData";
 
-const Account = () => {
+export async function getServerSideProps(context) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const accessToken = session.accessToken;
+
+  const userData = await getUserData(accessToken);
+
+  return {
+    props: {
+      userData: userData,
+    },
+  };
+}
+
+const Account = ({ userData }) => {
   const router = useRouter();
+  const { darkMode } = useColorMode();
   const { data: session, status, update } = useRefetchingSession();
-
-  useEffect(() => {
-    const csrftoken = Cookies.get("csrftoken");
-    if (csrftoken === undefined) {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/csrf/`, {
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("data: ", data);
-          Cookies.set("csrftoken", data["X-CSRFToken"]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
 
   const createPortalSession = () => {
     const csrftoken = Cookies.get("csrftoken");
@@ -45,12 +57,19 @@ const Account = () => {
   };
 
   return (
-    <div>
-      <button className="bg-brand p-4" onClick={createPortalSession}>
-        Manage Billing
-      </button>
-      <SubscriptionPlans />
-    </div>
+    <>
+      <Head>
+        <title>Account - Retube</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={`${darkMode && "dark"}`}>
+        <AccountPage
+          createPortalSession={createPortalSession}
+          initialUserData={userData}
+        />{" "}
+      </main>
+    </>
   );
 };
 

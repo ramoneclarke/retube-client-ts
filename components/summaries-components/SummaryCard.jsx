@@ -27,7 +27,7 @@ const SummaryCard = ({
       onClick={handleClick}
     >
       <div className="flex w-full flex-col items-center justify-center">
-        <p className="text-base font-medium text-darker line-clamp-3 dark:text-lighter">
+        <p className="text-base font-semibold text-darker line-clamp-3 dark:text-lighter">
           {title}
         </p>
       </div>

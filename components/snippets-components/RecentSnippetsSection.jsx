@@ -22,7 +22,7 @@ const RecentSnippetsSection = ({
         </h2>
       </div>
       <div className="flex w-full justify-center lg:w-4/5">
-        <div className="flex h-full w-full flex-row flex-wrap justify-center gap-8 p-0 md:gap-4 md:p-0 lg:gap-4">
+        <div className="flex h-full w-full flex-row flex-wrap justify-start gap-8 p-0 md:gap-4 md:p-0 lg:gap-4">
           {data.length === 0 ? (
             <div className="px-4">
               <p className="text-sm text-darkest dark:text-light">

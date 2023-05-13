@@ -7,6 +7,7 @@ import {
   FaSearchengin,
 } from "react-icons/fa";
 import SidebarButton from "./SidebarButton";
+import UserIdentity from "./UserIdentity";
 
 const Sidebar = () => {
   return (
@@ -16,14 +17,8 @@ const Sidebar = () => {
           <SidebarButton link={link} key={link.text} />
         ))}
       </div>
-      <div className="justify-left mb-4 flex h-11 w-5/6 cursor-pointer flex-row items-center gap-x-3 rounded-lg pl-3  hover:bg-lighter dark:hover:bg-dark">
-        <SidebarButton
-          link={{
-            text: "Settings",
-            icon: <FaCog size="1.3rem" className="text-brand" />,
-            path: "/settings",
-          }}
-        />
+      <div className="mb-4 flex w-full cursor-pointer flex-row items-center justify-start px-2">
+        <UserIdentity />
       </div>
     </div>
   );

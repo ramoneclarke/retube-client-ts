@@ -58,7 +58,7 @@ export async function getServerSideProps(context) {
 }
 
 const Snippets = ({ userData, initialSnippets }) => {
-  const { darkMode, toggleDarkMode } = useColorMode();
+  const { darkMode } = useColorMode();
 
   return (
     <>

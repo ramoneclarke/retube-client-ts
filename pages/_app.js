@@ -20,7 +20,7 @@ export default function App({
           <main className={montserrat.className}>
             <Component {...pageProps} />
           </main>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
       </ColorModeProvider>
     </SessionProvider>

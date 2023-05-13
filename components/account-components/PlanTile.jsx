@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import Cookies from "js-cookie";
 import { motion } from "framer-motion";
-import { GiCheckMark } from "react-icons/gi";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatDuration } from "@/utils/utils";
 import PlanBenefit from "./PlanBenefit";

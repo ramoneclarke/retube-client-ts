@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { CiFaceFrown } from "react-icons/ci";
 import { PropagateLoader } from "react-spinners";
 import Link from "next/link";
-import SummaryDisplay from "@/pages/designs/SummaryDisplay";
+import SummaryDisplay from "./SummaryDisplay";
 
 const NewSummaryWindow = ({
   summaryWindowOpen,

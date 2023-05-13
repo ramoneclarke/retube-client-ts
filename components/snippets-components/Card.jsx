@@ -19,12 +19,12 @@ const Card = ({
 
   return (
     <motion.div
-      className="flex h-full w-full cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800"
+      className="no-tap-highlight flex h-full w-full cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800"
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.3 },
       }}
-      whileTap={{ scale: 1 }}
+      whileTap={{ scale: 0.95 }}
       onClick={handleClick}
     >
       <div className="flex w-full flex-col items-center justify-center">

@@ -25,7 +25,7 @@ const UserAccountButton = () => {
 
   if (isMobile) {
     return (
-      <Link href="/account">
+      <Link href="/account" className="no-tap-highlight">
         <FaUserCircle className="cursor-pointer text-[1.8rem] text-brand lg:text-[2rem]" />
       </Link>
     );

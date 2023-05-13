@@ -17,7 +17,7 @@ const AccountPage = ({ createPortalSession, initialUserData }) => {
         <div className="flex w-full flex-col gap-8">
           <div className="mt-4 flex w-full p-4 md:mt-0 md:w-1/4">
             <motion.button
-              className="w-full rounded-xl border-darker bg-brand p-4 font-semibold dark:border-lighter md:border-2"
+              className="no-tap-highlight w-full rounded-xl border-darker bg-brand p-4 font-semibold dark:border-lighter md:border-2"
               onClick={createPortalSession}
               whileHover={{ backgroundColor: "rgb(0 220 155)" }}
             >

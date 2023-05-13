@@ -20,7 +20,7 @@ const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
         <ColorModeButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <UserAccountButton />
         <AiOutlineMenu
-          className="block cursor-pointer text-[1.8rem] text-brand lg:hidden lg:text-[2rem]"
+          className="no-tap-highlight block cursor-pointer text-[1.8rem] text-brand lg:hidden lg:text-[2rem]"
           onClick={handleClick}
         />
       </div>

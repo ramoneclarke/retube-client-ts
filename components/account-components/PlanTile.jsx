@@ -47,19 +47,21 @@ const PlanTile = ({
 
   return (
     <div className="flex min-h-[30rem] w-full flex-col rounded-2xl bg-slate-200 p-8 text-darkest shadow-lg dark:bg-darker dark:text-lightest md:w-1/3">
-      <h2 className="mb-6 text-2xl font-medium">{planName} Plan</h2>
-      <p className="text-5xl font-bold">
+      <h2 className="mb-6 text-2xl font-medium md:h-16">{planName} Plan</h2>
+      <p className="text-5xl font-bold md:text-4xl lg:text-5xl">
         £{price}
         <span className="text-lg font-normal">
           / {selectedBillingType === "monthly" ? "month" : "year"}
         </span>
       </p>
-      <p className="text-lg font-medium">Billed Monthly</p>
+      <p className="text-lg font-medium">
+        {planName.toLowerCase() === "free" ? "Always free" : "Billed Monthly"}
+      </p>
       {planName.toLowerCase() === userData.subscription.plan.name ? (
         planName.toLowerCase() === "free" ? (
           <motion.button
             onClick={createPortalSession}
-            className="mt-4 w-full rounded-lg bg-mid font-semibold"
+            className="mt-4 w-full rounded-lg bg-mid p-4 font-semibold"
             whileHover={{ scale: 1.05 }}
           >
             Current Plan
@@ -111,7 +113,7 @@ const PlanTile = ({
           bold={true}
         />
         <PlanBenefit
-          text={`  Summaries max video length:{" "}
+          text={`  Summaries max video length: 
             ${formatDuration(summariesMaxVideoLength)}`}
           bold={true}
         />

@@ -23,8 +23,6 @@ const SnippetsControls = ({
   const snippetsMonthlyLimit =
     userData?.subscription.plan.snippets_monthly_limit;
 
-  console.log(session);
-
   const handleClick = () => {
     if (snippetsUsage >= snippetsMonthlyLimit) {
       setMaxUsage(true);

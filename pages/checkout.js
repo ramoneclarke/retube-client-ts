@@ -13,7 +13,6 @@ const Checkout = () => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    console.log(process.env.NEXT_PUBLIC_BACKEND_API_BASE);
     const csrf = getCsrfToken();
     const url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/payments/create-payment-intent/`;
     fetch(url, {

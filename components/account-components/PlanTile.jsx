@@ -40,7 +40,6 @@ const PlanTile = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         router.push(data.redirect);
       });
   };

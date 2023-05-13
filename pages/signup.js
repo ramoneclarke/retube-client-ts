@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
 import { useColorMode } from "@/context/ColorModeContext";
-import LoginPage from "@/components/auth-components/LoginPage";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import SignUpPage from "@/components/auth-components/SignUpPage";

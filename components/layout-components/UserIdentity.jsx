@@ -14,10 +14,10 @@ const UserIdentity = () => {
       <FaUserCircle className="text-[1.3rem] text-brand lg:text-[1.5rem]" />
       <div className="flex w-3/4 flex-col">
         <p className="text-sm font-medium text-darkest dark:text-lightest">
-          {session.user.name}
+          {session?.user.name}
         </p>
         <p className="text-xs font-medium text-darkest line-clamp-1 dark:text-lightest">
-          {session.user.email}
+          {session?.user.email}
         </p>
       </div>
     </Link>

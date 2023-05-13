@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import {
-  FaCog,
   FaHome,
   FaListAlt,
   FaRegHandScissors,
   FaSearchengin,
-  FaUserCircle,
 } from "react-icons/fa";
 import { useClickOutside } from "react-click-outside-hook";
 import SidebarButton from "./SidebarButton";

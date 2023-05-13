@@ -18,9 +18,6 @@ const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
       <Logo />
       <div className="flex gap-6 pr-4">
         <ColorModeButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        {/* <Link href="/account">
-          <FaUserCircle className="cursor-pointer text-[1.8rem] text-brand lg:text-[2rem]" />
-        </Link> */}
         <UserAccountButton />
         <AiOutlineMenu
           className="block cursor-pointer text-[1.8rem] text-brand lg:hidden lg:text-[2rem]"

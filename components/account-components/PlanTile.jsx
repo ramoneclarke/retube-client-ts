@@ -61,7 +61,7 @@ const PlanTile = ({
         planName.toLowerCase() === "free" ? (
           <motion.button
             onClick={createPortalSession}
-            className="mt-4 w-full rounded-lg bg-mid p-4 font-semibold"
+            className="no-tap-highlight mt-4 w-full rounded-lg bg-mid p-4 font-semibold"
             whileHover={{ scale: 1.05 }}
           >
             Current Plan
@@ -69,7 +69,7 @@ const PlanTile = ({
         ) : (
           <motion.button
             onClick={createPortalSession}
-            className="mt-4 w-full rounded-lg bg-red-400 p-4 font-semibold"
+            className="no-tap-highlight mt-4 w-full rounded-lg bg-red-400 p-4 font-semibold"
             whileHover={{ scale: 1.05 }}
           >
             Unsubscribe
@@ -82,7 +82,7 @@ const PlanTile = ({
               ? createCheckoutSession
               : createPortalSession
           } // create checkout section when subscribing to a paid account from a free account, and a portal session when changing existing subscriptions
-          className="mt-4 w-full rounded-lg bg-brand p-4 font-semibold dark:bg-brandDark"
+          className="no-tap-highlight mt-4 w-full rounded-lg bg-brand p-4 font-semibold dark:bg-brandDark"
           whileHover={{ scale: 1.05 }}
         >
           Change plan

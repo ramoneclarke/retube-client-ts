@@ -68,7 +68,7 @@ const SnippetsControls = ({
           />
           <motion.button
             onClick={handleClick}
-            className="h-10 w-full rounded-xl bg-brand font-medium text-darkest shadow-md dark:bg-brand dark:font-semibold md:h-12 md:w-32 lg:h-12 lg:w-24"
+            className="no-tap-highlight h-10 w-full rounded-xl bg-brand font-medium text-darkest shadow-md dark:bg-brand dark:font-semibold md:h-12 md:w-32 lg:h-12 lg:w-24"
             whileTap={{
               scale: 0.9,
             }}

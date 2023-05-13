@@ -32,11 +32,7 @@ const UserAccountButton = () => {
   }
 
   return (
-    <DropdownMenuRoot
-      className={`${darkMode && "dark"}`}
-      open={menuOpen}
-      onOpenChange={() => console.log("onchange")}
-    >
+    <DropdownMenuRoot className={`${darkMode && "dark"}`} open={menuOpen}>
       <DropdownMenuTrigger
         className="focus:outline-none"
         onMouseOver={() => setMenuOpen(true)}

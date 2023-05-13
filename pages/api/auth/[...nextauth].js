@@ -121,32 +121,9 @@ export const authOptions = {
     },
 
     async session({ session, token }) {
-      // Send access token to the client
+      // Send tokens to the client
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
-      console.log(
-        `INSIDE SESSION CALLBACK - New access token: ${token.accessToken}`
-      );
-      // const response = await fetch(
-      //   `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/api/user-data/`,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token.accessToken}`,
-      //     },
-      //   }
-      // );
-
-      // if (response.ok) {
-      //   const userData = await response.json();
-      //   session.user.data = userData;
-      // } else {
-      //   console.error(
-      //     "Failed to fetch user data:",
-      //     response.status,
-      //     response.statusText
-      //   );
-      // }
-
       return session;
     },
   },

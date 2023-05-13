@@ -1,7 +1,7 @@
-import SummaryDisplay from "@/pages/designs/SummaryDisplay";
 import { motion } from "framer-motion";
 import React from "react";
 import { IoClose } from "react-icons/io5";
+import SummaryDisplay from "./SummaryDisplay";
 
 const SummaryWindow = ({
   setSummaryWindowOpen,

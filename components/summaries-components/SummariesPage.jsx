@@ -115,9 +115,6 @@ const SummariesPage = ({ initialUserData, initialSummaries }) => {
     }
   };
 
-  console.log("videoDuration: ", videoDuration);
-  console.log("maxvidlength: ", summariesMaxVideoLength);
-
   return (
     <>
       <Layout>
@@ -219,7 +216,6 @@ const getSummaries = async (token) => {
       }
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
     throw err;

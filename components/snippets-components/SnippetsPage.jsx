@@ -77,8 +77,6 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
     },
   };
 
-  console.log(debouncedStartTimeSeconds);
-
   const setEndTimeToDuration = (e) => {
     const duration = e.target.getDuration();
     // setEndTimeSeconds(duration - 1);
@@ -217,7 +215,6 @@ const getSnippets = async (token) => {
       }
     );
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
     throw err;

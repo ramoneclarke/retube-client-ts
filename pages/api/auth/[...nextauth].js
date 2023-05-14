@@ -1,8 +1,6 @@
 import NextAuth from "next-auth";
-import Cookies from "js-cookie";
 import GoogleProvider from "next-auth/providers/google";
-import { isJwtExpired, makeUrl } from "@/utils/AuthUtils";
-import { getCsrfToken } from "next-auth/react";
+import { isJwtExpired } from "@/utils/AuthUtils";
 
 export const refreshToken = async function (refreshToken, accessToken) {
   try {

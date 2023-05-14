@@ -8,6 +8,7 @@ import { useColorMode } from "@/context/ColorModeContext";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getUserData } from "@/hooks/useUserData";
+import { useQuery } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -36,6 +37,17 @@ const Account = ({ userData }) => {
   const router = useRouter();
   const { darkMode } = useColorMode();
   const { data: session, status, update } = useRefetchingSession();
+
+  const {
+    isLoading,
+    data: planDetails,
+    isError,
+    refetch,
+  } = useQuery(
+    ["plans-details"],
+    () => getPlansDetails(session.accessToken),
+    {}
+  );
 
   const createPortalSession = () => {
     const csrftoken = Cookies.get("csrftoken");
@@ -66,10 +78,34 @@ const Account = ({ userData }) => {
         <AccountPage
           createPortalSession={createPortalSession}
           initialUserData={userData}
+          planDetails={planDetails}
         />{" "}
       </main>
     </>
   );
+};
+
+const getPlansDetails = async (token) => {
+  try {
+    const csrftoken = Cookies.get("csrftoken");
+    const response = await fetch(
+      `
+          ${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/plans/`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+          Authorization: `Bearer ${token}`,
+        },
+        credentials: "include",
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export default Account;

@@ -31,10 +31,19 @@ export const extractVideoId = (url) => {
   // regular expression pattern to match YouTube video URLs
   const pattern =
     /^https?:\/\/(?:www\.)?youtube.com\/watch\?v=([a-zA-Z0-9_-]{11})/;
-  // test if the URL matches the pattern
+  // regular expression pattern to match YouTube mobile URLs
+  const mobilePattern = /^https?:\/\/youtu\.be\/([a-zA-Z0-9_-]{11})/;
+  // test if the URL matches the patterns
   if (pattern.test(url)) {
     // extract the video ID using regex match
     const match = url.match(pattern);
+    console.log(match);
+    return match[1];
+  } else if (mobilePattern.test(url)) {
+    // extract the video ID using regex match
+    const match = url.match(mobilePattern);
+    console.log(match);
+
     return match[1];
   } else {
     // URL is not valid

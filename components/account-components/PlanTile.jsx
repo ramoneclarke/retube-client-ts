@@ -8,6 +8,7 @@ import PlanBenefit from "./PlanBenefit";
 
 const PlanTile = ({
   planName,
+  plan,
   price,
   priceId,
   selectedBillingType,
@@ -17,13 +18,10 @@ const PlanTile = ({
   const router = useRouter();
   const { data: session } = useRefetchingSession();
 
-  const snippetsMonthlyLimit =
-    userData.subscription.plan.snippets_monthly_limit;
-  const snippetsMaxLength = userData.subscription.plan.snippets_max_length;
-  const summariesMonthlyLimit =
-    userData.subscription.plan.summaries_monthly_limit;
-  const summariesMaxVideoLength =
-    userData.subscription.plan.summaries_max_video_length;
+  const snippetsMonthlyLimit = plan.snippets_monthly_limit;
+  const snippetsMaxLength = plan.snippets_max_length;
+  const summariesMonthlyLimit = plan.summaries_monthly_limit;
+  const summariesMaxVideoLength = plan.summaries_max_video_length;
 
   const createCheckoutSession = () => {
     const csrftoken = Cookies.get("csrftoken");

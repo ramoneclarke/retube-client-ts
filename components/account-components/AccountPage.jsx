@@ -5,7 +5,7 @@ import BillingTypeTabs from "./BillingTypeTabs";
 import { motion } from "framer-motion";
 import { useUserData } from "@/hooks/useUserData";
 
-const AccountPage = ({ createPortalSession, initialUserData }) => {
+const AccountPage = ({ createPortalSession, initialUserData, planDetails }) => {
   const [selectedBillingType, setSelectedBillingType] = useState("monthly");
 
   const { data: userData, refetch: refetchUserData } =
@@ -41,6 +41,7 @@ const AccountPage = ({ createPortalSession, initialUserData }) => {
               selectedBillingType={selectedBillingType}
               userData={userData}
               createPortalSession={createPortalSession}
+              planDetails={planDetails}
             />
           </div>
         </div>

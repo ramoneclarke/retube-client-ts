@@ -4,13 +4,15 @@ import PlanTile from "./PlanTile";
 const SubscriptionPlans = ({
   selectedBillingType,
   userData,
-  createPortalSession = { createPortalSession },
+  createPortalSession,
+  planDetails,
 }) => {
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex w-full flex-col gap-4 md:flex-row">
         <PlanTile
           planName="Free"
+          plan={planDetails[0]}
           price="0"
           priceId=""
           selectedBillingType={selectedBillingType}
@@ -19,6 +21,7 @@ const SubscriptionPlans = ({
         />
         <PlanTile
           planName="Basic"
+          plan={planDetails[1]}
           price={selectedBillingType === "monthly" ? "10" : "100"}
           priceId="price_1MtZWtA6tstbPJ9j6SBQluzy"
           selectedBillingType={selectedBillingType}
@@ -27,6 +30,7 @@ const SubscriptionPlans = ({
         />
         <PlanTile
           planName="Premium"
+          plan={planDetails[2]}
           price={selectedBillingType === "monthly" ? "30" : "300"}
           priceId="price_1MtZa0A6tstbPJ9jRykgICGE"
           selectedBillingType={selectedBillingType}

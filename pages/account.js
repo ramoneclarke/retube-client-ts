@@ -26,28 +26,20 @@ export async function getServerSideProps(context) {
 
   const userData = await getUserData(accessToken);
 
+  const plans = await getPlansDetails(accessToken);
+
   return {
     props: {
       userData: userData,
+      planDetails: plans,
     },
   };
 }
 
-const Account = ({ userData }) => {
+const Account = ({ userData, planDetails }) => {
   const router = useRouter();
   const { darkMode } = useColorMode();
-  const { data: session, status, update } = useRefetchingSession();
-
-  const {
-    isLoading,
-    data: planDetails,
-    isError,
-    refetch,
-  } = useQuery(
-    ["plans-details"],
-    () => getPlansDetails(session.accessToken),
-    {}
-  );
+  const { data: session } = useRefetchingSession();
 
   const createPortalSession = () => {
     const csrftoken = Cookies.get("csrftoken");

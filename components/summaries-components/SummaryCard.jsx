@@ -18,7 +18,7 @@ const SummaryCard = ({
 
   return (
     <motion.div
-      className="no-tap-highlight flex h-full w-full cursor-pointer flex-col items-center justify-between gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800 "
+      className="no-tap-highlight flex h-fit w-full cursor-pointer flex-col items-center justify-between gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800 "
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.3 },
@@ -26,8 +26,8 @@ const SummaryCard = ({
       whileTap={{ scale: 0.95 }}
       onClick={handleClick}
     >
-      <div className="flex w-full flex-col items-center justify-center">
-        <p className="text-base font-semibold text-darker line-clamp-3 dark:text-lighter">
+      <div className="flex h-16 w-full flex-col items-center justify-center">
+        <p className="text-base font-semibold text-darker line-clamp-2 dark:text-lighter">
           {title}
         </p>
       </div>

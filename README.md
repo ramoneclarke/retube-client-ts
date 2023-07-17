@@ -14,6 +14,7 @@ Here is a working live demo : [https://app.retubeai.com](https://app.retubeai.co
 - React
 - NextJS
 - TailwindCSS
+- RadixUI
 - OpenAI
 - Stripe
 

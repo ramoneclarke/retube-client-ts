@@ -12,14 +12,11 @@ import {
 import { useColorMode } from "@/context/ColorModeContext";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { handleSignOut } from "@/utils/handlers";
-import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { useRouter } from "next/router";
 
-const UserAccountButton = () => {
+const UserAccountButton = ({ darkMode, session }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1023px)");
-  const { darkMode } = useColorMode();
-  const { data: session } = useRefetchingSession();
 
   const router = useRouter();
 

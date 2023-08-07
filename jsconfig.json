@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/context/*": ["context/*"]
+      "@/context/*": ["context/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   },
   "include": ["./node_modules/cypress", "cypress/**/*.js"]

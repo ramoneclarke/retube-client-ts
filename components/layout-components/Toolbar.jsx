@@ -18,10 +18,12 @@ const Toolbar = ({ setOpen, menuClicked, setMenuClicked }) => {
   };
   return (
     <nav className="flex h-20 flex-row items-center justify-between bg-lightest shadow-2xl dark:bg-darkest lg:bg-lighter">
-      <Logo />
+      <div className="flex h-full w-fit bg-lightest pl-4 dark:bg-darkest lg:w-1/5 lg:min-w-[16rem] lg:pl-8 ">
+        <Logo />
+      </div>
       <div className="flex gap-6 pr-4">
         <ColorModeButton darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-        <UserAccountButton darkMode={darkmode} session={session} />
+        <UserAccountButton darkMode={darkMode} session={session} />
         <AiOutlineMenu
           className="no-tap-highlight block cursor-pointer text-[1.8rem] text-brand lg:hidden lg:text-[2rem]"
           onClick={handleClick}

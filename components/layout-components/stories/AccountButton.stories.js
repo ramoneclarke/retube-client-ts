@@ -8,5 +8,5 @@ const meta = {
 export default meta;
 
 export const DefaultAccountButton = {
-  render: () => <UserAccountButton />,
+  render: () => <UserAccountButton darkMode="false" />,
 };

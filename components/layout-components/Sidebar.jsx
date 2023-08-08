@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  FaCog,
   FaHome,
   FaListAlt,
   FaRegHandScissors,
@@ -9,16 +8,21 @@ import {
 import SidebarButton from "./SidebarButton";
 import UserIdentity from "./UserIdentity";
 
-const Sidebar = () => {
+const Sidebar = ({ darkMode, path, session }) => {
   return (
-    <div className="fixed hidden h-[calc(100vh-4rem)] w-1/5 min-w-[16rem] flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest lg:flex">
+    <div className="fixed hidden h-[calc(100vh-4rem)] min-h-[720px] w-1/5 min-w-[16rem] flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest lg:flex">
       <div className="flex w-full flex-col items-center gap-y-4">
         {navLinks.map((link) => (
-          <SidebarButton link={link} key={link.text} />
+          <SidebarButton
+            link={link}
+            key={link.text}
+            darkMode={darkMode}
+            path={path}
+          />
         ))}
       </div>
       <div className="mb-4 flex w-full cursor-pointer flex-row items-center justify-start px-2">
-        <UserIdentity />
+        <UserIdentity session={session} />
       </div>
     </div>
   );

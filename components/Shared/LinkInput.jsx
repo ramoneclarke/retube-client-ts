@@ -8,7 +8,7 @@ const LinkInput = ({ inputText, setInputText, summary, setVideoDuration }) => {
     }
   };
   return (
-    <div className="flex h-full w-5/6 overflow-hidden rounded-lg bg-lightest shadow-md dark:bg-slate-700">
+    <div className="flex h-full w-5/6 max-w-3xl overflow-hidden rounded-lg bg-lightest shadow-md dark:bg-slate-700">
       <input
         type="text"
         placeholder="Enter a Youtube URL"

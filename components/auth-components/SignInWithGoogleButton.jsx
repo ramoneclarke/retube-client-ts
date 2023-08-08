@@ -6,7 +6,7 @@ const SignInWithGoogleButton = () => {
     <div class="w-full max-w-sm px-6 sm:px-0">
       <button
         type="button"
-        class="dark:focus:ring-[#4285F4]/55 mr-2 mb-2 inline-flex w-full items-center justify-center rounded-lg bg-brand px-5 py-3.5 text-center text-sm font-medium text-white hover:bg-[#4285F4]/90 focus:outline-none focus:ring-4 focus:ring-[#4285F4]/50"
+        className="dark:focus:ring-[#4285F4]/55 mr-2 mb-2 inline-flex w-full items-center justify-center rounded-lg bg-brand px-5 py-3.5 text-center text-sm font-medium text-white hover:bg-[#4285F4]/90 focus:outline-none focus:ring-4 focus:ring-[#4285F4]/50"
         onClick={() => signIn("google")}
       >
         <svg

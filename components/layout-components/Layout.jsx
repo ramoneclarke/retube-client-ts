@@ -4,11 +4,18 @@ import React, { useState } from "react";
 import MobileSidebar from "./MobileSidebar";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
+import { useColorMode } from "@/context/ColorModeContext";
+import useRefetchingSession from "@/hooks/useRefetchingSession";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1023px)");
+
+  const { darkMode } = useColorMode();
+  const router = useRouter();
+  const { data: session } = useRefetchingSession();
 
   return (
     <div className="flex h-screen flex-col">
@@ -19,7 +26,7 @@ const Layout = ({ children }) => {
       />
       <div className="flex h-full flex-row overflow-hidden bg-lighter dark:bg-darkest">
         {/* main section*/}
-        <Sidebar />
+        <Sidebar darkMode={darkMode} path={router.asPath} session={session} />
         <AnimatePresence>
           {isMobile && open ? (
             <MobileSidebar

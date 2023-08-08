@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -9,6 +10,9 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+    },
+    viewport: {
+      viewports: INITIAL_VIEWPORTS,
     },
   },
 };

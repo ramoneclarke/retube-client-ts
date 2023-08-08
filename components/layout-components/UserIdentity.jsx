@@ -1,11 +1,8 @@
-import useRefetchingSession from "@/hooks/useRefetchingSession";
 import Link from "next/link";
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 
-const UserIdentity = () => {
-  const { data: session } = useRefetchingSession();
-
+const UserIdentity = ({ session }) => {
   return (
     <Link
       href="/account"

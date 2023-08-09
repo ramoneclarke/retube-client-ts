@@ -19,7 +19,7 @@ const Card = ({
 
   return (
     <motion.div
-      className="no-tap-highlight flex h-full w-full cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800"
+      className="no-tap-highlight min-h-80 flex h-full w-full max-w-xs cursor-pointer flex-col items-center gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800"
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.3 },

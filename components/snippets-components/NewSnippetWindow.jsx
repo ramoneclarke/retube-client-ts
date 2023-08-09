@@ -7,6 +7,9 @@ import { PropagateLoader } from "react-spinners";
 import SnippetDisplay from "./SnippetDisplay";
 import Link from "next/link";
 
+const windowClasses =
+  "absolute top-2 right-0 z-20 flex h-[98%] min-h-[720px]  w-[98vw] min-w-[1366px] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6";
+
 const NewSnippetWindow = ({
   snippetWindowOpen,
   setSnippetWindowOpen,
@@ -25,7 +28,7 @@ const NewSnippetWindow = ({
   if (maxUsage) {
     return (
       <motion.div
-        className="absolute top-2 right-0 z-20 flex h-[98%] w-[98vw] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6"
+        className={windowClasses}
         initial={{ x: 1500 }}
         animate={{ x: 0 }}
         exit={{ x: 1500 }}
@@ -60,7 +63,7 @@ const NewSnippetWindow = ({
     console.log(snippetMutation.error);
     return (
       <motion.div
-        className="absolute top-2 right-0 z-20 flex h-[98%] w-[98vw] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6"
+        className={windowClasses}
         initial={{ x: 1500 }}
         animate={{ x: 0 }}
         exit={{ x: 1500 }}
@@ -84,7 +87,7 @@ const NewSnippetWindow = ({
   }
   return (
     <motion.div
-      className="absolute top-2 right-0 z-20 flex h-[98%] w-[98vw] flex-col overflow-y-scroll rounded-xl bg-slate-200 p-4 shadow-lg dark:bg-darker lg:top-4 lg:h-[94%] lg:w-4/5 lg:p-6"
+      className={windowClasses}
       initial={{ x: 1500 }}
       animate={{ x: 0 }}
       exit={{ x: 1500 }}

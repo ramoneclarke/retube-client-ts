@@ -18,7 +18,7 @@ const SummaryCard = ({
 
   return (
     <motion.div
-      className="no-tap-highlight flex h-fit w-full cursor-pointer flex-col items-center justify-between gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800 "
+      className="no-tap-highlight min-h-80 flex h-fit w-full max-w-xs cursor-pointer flex-col items-center justify-between gap-2 rounded-xl bg-lightest p-4 shadow-lg dark:border dark:border-dark/20 dark:bg-slate-800 md:max-w-full"
       whileHover={{
         scale: 1.05,
         transition: { duration: 0.3 },

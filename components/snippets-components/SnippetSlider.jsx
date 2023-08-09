@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as Slider from "@radix-ui/react-slider";
-import { useColorMode } from "@/context/ColorModeContext";
 
 const SnippetSlider = ({
   endTimeSeconds,
@@ -8,8 +7,8 @@ const SnippetSlider = ({
   setStartTimeSeconds,
   setEndTimeSeconds,
   userData,
+  darkMode,
 }) => {
-  const { darkMode } = useColorMode();
   const snippetsMaxLength = userData?.subscription.plan.snippets_max_length;
 
   const [sliderColorLight, setSliderColorLight] = useState("e2e8f0"); //slate200

@@ -9,6 +9,7 @@ export default meta;
 
 export const DefaultSnippetContols = {
   args: {
+    session: null,
     snippetMutation: {
       data: {
         id: 1,

@@ -16,8 +16,11 @@ import { useUserData } from "@/hooks/useUserData";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import SnippetsControls from "./SnippetsControls";
 import LinkActionButton from "../Shared/LinkActionButton";
+import { useColorMode } from "@/context/ColorModeContext";
 
 const SnippetsPage = ({ initialUserData, initialSnippets }) => {
+  const { darkMode } = useColorMode();
+
   const snippetsMaxLength =
     initialUserData.subscription.plan.snippets_max_length;
   const defaultEndTime = snippetsMaxLength > 60 ? 60 : snippetsMaxLength;
@@ -40,7 +43,7 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
   const { data: userData, refetch: refetchUserData } =
     useUserData(initialUserData);
 
-  const { isLoading, data, isError, refetch } = useQuery(
+  const { data, refetch } = useQuery(
     ["snippets"],
     () => getSnippets(session.accessToken),
     {
@@ -126,6 +129,7 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
             )}
           </div>
           <SnippetsControls
+            session={session}
             startTimeSeconds={startTimeSeconds}
             endTimeSeconds={endTimeSeconds}
             setStartTimeSeconds={setStartTimeSeconds}
@@ -136,6 +140,7 @@ const SnippetsPage = ({ initialUserData, initialSnippets }) => {
             setNewSnippetWindowOpen={setNewSnippetWindowOpen}
             userData={userData}
             setMaxUsage={setMaxUsage}
+            darkMode={darkMode}
           />
           <RecentSnippetsSection
             data={data}

@@ -1,4 +1,3 @@
-import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatTimeFromSeconds } from "@/utils/formatTimeFromSeconds";
 import { motion } from "framer-motion";
 import React from "react";
@@ -6,6 +5,7 @@ import SnippetSlider from "./SnippetSlider";
 import InfoTooltip from "../Shared/InfoTooltip";
 
 const SnippetsControls = ({
+  session,
   startTimeSeconds,
   endTimeSeconds,
   setStartTimeSeconds,
@@ -16,9 +16,8 @@ const SnippetsControls = ({
   setNewSnippetWindowOpen,
   userData,
   setMaxUsage,
+  darkMode,
 }) => {
-  const { data: session } = useRefetchingSession();
-
   const snippetsUsage = userData?.subscription.snippets_usage;
   const snippetsMonthlyLimit =
     userData?.subscription.plan.snippets_monthly_limit;
@@ -63,6 +62,7 @@ const SnippetsControls = ({
             setStartTimeSeconds={setStartTimeSeconds}
             setEndTimeSeconds={setEndTimeSeconds}
             userData={userData}
+            darkMode={darkMode}
           />
           <motion.button
             onClick={handleClick}

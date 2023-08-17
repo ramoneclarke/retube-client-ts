@@ -10,7 +10,7 @@ import UserIdentity from "./UserIdentity";
 
 const Sidebar = ({ darkMode, path, session }) => {
   return (
-    <div className="fixed hidden h-[calc(100vh-4rem)] min-h-[720px] w-1/5 min-w-[16rem] flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest lg:flex">
+    <div className="fixed hidden h-[calc(100vh-5rem)] min-h-[600px] w-1/5 min-w-[16rem] flex-col items-center justify-between bg-lightest pt-16 dark:bg-darkest lg:flex">
       <div className="flex w-full flex-col items-center gap-y-4">
         {navLinks.map((link) => (
           <SidebarButton

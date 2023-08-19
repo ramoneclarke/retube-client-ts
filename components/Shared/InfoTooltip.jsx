@@ -14,9 +14,15 @@ const InfoTooltip = ({ text }) => {
       <Tooltip>
         <TooltipTrigger>
           {" "}
-          <ImInfo className="cursor-pointer text-xl text-darker dark:text-lighter" />
+          <ImInfo
+            data-cy="tooltip-trigger"
+            className="cursor-pointer text-xl text-darker dark:text-lighter"
+          />
         </TooltipTrigger>
-        <TooltipContent className="mr-2 bg-lightest text-darkest dark:border-darker dark:bg-dark dark:text-lightest">
+        <TooltipContent
+          data-cy="tooltip-content"
+          className="mr-2 bg-lightest text-darkest dark:border-darker dark:bg-dark dark:text-lightest"
+        >
           <TooltipArrow className="fill-lightest dark:fill-dark" />
           <p className="text-darkest dark:text-lighter">{text}</p>
         </TooltipContent>

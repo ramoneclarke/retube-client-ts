@@ -8,7 +8,6 @@ import { useColorMode } from "@/context/ColorModeContext";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getUserData } from "@/hooks/useUserData";
-import { useQuery } from "@tanstack/react-query";
 
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions);

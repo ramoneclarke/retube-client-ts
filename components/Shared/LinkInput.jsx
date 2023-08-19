@@ -12,7 +12,7 @@ const LinkInput = ({ inputText, setInputText, summary, setVideoDuration }) => {
       <input
         type="text"
         placeholder="Enter a Youtube URL"
-        className="h-full w-full bg-lightest p-4 text-base outline-none dark:bg-darker/50 dark:text-lighter "
+        className="h-full w-full bg-lightest p-4 text-base text-darkest outline-none dark:bg-darker/50 dark:text-lighter"
         value={inputText}
         onChange={handleChange}
       />

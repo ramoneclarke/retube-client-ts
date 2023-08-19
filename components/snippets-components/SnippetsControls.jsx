@@ -45,11 +45,17 @@ const SnippetsControls = ({
         {/* Controls */}
         <div className="mb-4 flex h-14 w-60 flex-row items-center justify-center gap-4 rounded-xl bg-slate-200 text-2xl font-medium dark:bg-light">
           {/* Snippet details view */}
-          <p className="text-darker dark:text-darker">
+          <p
+            data-cy="controls-start-time"
+            className="text-darker dark:text-darker"
+          >
             {formatTimeFromSeconds(startTimeSeconds)}
           </p>
           <p className="text-darker dark:text-darker">-</p>
-          <p className="text-darker dark:text-darker">
+          <p
+            data-cy="controls-end-time"
+            className="text-darker dark:text-darker"
+          >
             {formatTimeFromSeconds(endTimeSeconds)}
           </p>
         </div>

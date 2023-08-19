@@ -28,7 +28,10 @@ const Card = ({
       onClick={handleClick}
     >
       <div className="flex w-full flex-col items-center justify-center">
-        <p className="font-semibold text-darker line-clamp-1 dark:text-lighter">
+        <p
+          data-cy="card-title"
+          className="font-semibold text-darker line-clamp-1 dark:text-lighter"
+        >
           {title}
         </p>
       </div>
@@ -45,7 +48,10 @@ const Card = ({
         />
       </div>
       <div className="flex h-full w-full flex-col">
-        <p className="text-sm text-dark line-clamp-5 dark:text-light">
+        <p
+          data-cy="card-text"
+          className="text-sm text-dark line-clamp-5 dark:text-light"
+        >
           &quot;{text}&quot;
         </p>
       </div>

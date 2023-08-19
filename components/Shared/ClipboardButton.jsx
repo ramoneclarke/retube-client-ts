@@ -23,6 +23,7 @@ const ClipboardButton = ({ text, setCopied, copied, clipboardType }) => {
       onCopy={handleCopyClick}
     >
       <motion.button
+        data-cy="clipboard-button"
         className="flex w-full flex-row items-center justify-center gap-1 rounded-xl border-2 border-darker p-2 font-semibold text-darkest dark:border-lighter dark:text-lightest lg:w-52"
         animate={{
           color: copied ? "#6EE7B7" : null,

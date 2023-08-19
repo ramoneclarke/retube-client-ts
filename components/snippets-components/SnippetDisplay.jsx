@@ -28,7 +28,10 @@ const SnippetDisplay = ({
                   {isMobile ? "Title:" : "Video Title:"}
                 </h2>
               </div>
-              <p className="flex h-full items-center text-base text-darkest dark:text-lightest lg:px-4 lg:text-lg">
+              <p
+                data-cy="snippet-window-video-title"
+                className="flex h-full items-center text-base text-darkest dark:text-lightest lg:px-4 lg:text-lg"
+              >
                 {snippetMutation?.data?.video?.title}
               </p>
             </div>
@@ -40,7 +43,10 @@ const SnippetDisplay = ({
                   Time:{" "}
                 </h2>
               </div>{" "}
-              <p className="flex h-full items-center text-base text-darkest dark:text-lightest lg:px-4 lg:text-lg">
+              <p
+                data-cy="snippet-window-time"
+                className="flex h-full items-center text-base text-darkest dark:text-lightest lg:px-4 lg:text-lg"
+              >
                 {formatTimeFromSeconds(startTimeSeconds)} -{" "}
                 {formatTimeFromSeconds(endTimeSeconds)}
               </p>
@@ -56,6 +62,7 @@ const SnippetDisplay = ({
               {snippetMutation?.data ? (
                 <div className="w-4/5">
                   <Link
+                    data-cy="snippet-window-url"
                     href={snippetMutation?.data?.video?.url}
                     className="flex h-full w-full items-center text-base text-blue-500 lg:px-4 lg:text-lg"
                   >
@@ -80,7 +87,10 @@ const SnippetDisplay = ({
         <div className="flex h-full w-full flex-col gap-4 pt-4 lg:flex-row">
           <h2 className="w-28 text-lg text-gray-400">Snippet: </h2>
           <div className="flex h-fit w-full flex-1 rounded-3xl bg-lighter p-4 text-lg shadow-md dark:bg-slate-700 lg:min-h-full lg:overflow-y-auto">
-            <p className="text-darkest dark:text-lightest">
+            <p
+              data-cy="snippet-window-snippet"
+              className="text-darkest dark:text-lightest"
+            >
               {snippetMutation?.data?.text}
             </p>
           </div>

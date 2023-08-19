@@ -7,6 +7,7 @@ const RecentSnippetsSection = ({
   setSnippetWindowOpen,
   setSelectedSnippetData,
 }) => {
+  console.log(data);
   if (!data) {
     return (
       <div className="flex h-full w-full flex-col items-center justify-center gap-6 pb-10">

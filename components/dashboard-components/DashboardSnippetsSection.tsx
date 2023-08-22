@@ -3,6 +3,17 @@ import Card from "../snippets-components/Card";
 import { AnimatePresence, motion } from "framer-motion";
 import SnippetWindow from "../snippets-components/SnippetWindow";
 import Link from "next/link";
+import { UserData, UserDataSnippet } from "@/hooks/useUserData";
+
+type DashboardSnippetsSectionProps = {
+  userData: UserData;
+  snippetWindowOpen: boolean;
+  setSnippetWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedSnippetData: React.Dispatch<
+    React.SetStateAction<UserDataSnippet | null>
+  >;
+  selectedSnippetData: UserDataSnippet | null;
+};
 
 const DashboardSnippetsSection = ({
   userData,
@@ -10,7 +21,7 @@ const DashboardSnippetsSection = ({
   setSnippetWindowOpen,
   setSelectedSnippetData,
   selectedSnippetData,
-}) => {
+}: DashboardSnippetsSectionProps) => {
   if (userData.snippets.length === 0) {
     return (
       <div className="flex h-[12rem] w-full flex-col px-1 md:px-4 ">
@@ -57,8 +68,8 @@ const DashboardSnippetsSection = ({
         {snippetWindowOpen ? (
           <SnippetWindow
             setSnippetWindowOpen={setSnippetWindowOpen}
-            startTimeSeconds={selectedSnippetData.start}
-            endTimeSeconds={selectedSnippetData.end}
+            startTimeSeconds={selectedSnippetData?.start}
+            endTimeSeconds={selectedSnippetData?.end}
             existingSnippetData={selectedSnippetData}
             setSelectedSnippetData={setSelectedSnippetData}
           />

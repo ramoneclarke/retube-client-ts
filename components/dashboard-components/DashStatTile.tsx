@@ -2,13 +2,24 @@ import React from "react";
 import { FaListAlt, FaRegHandScissors, FaSearchengin } from "react-icons/fa";
 import { PropagateLoader } from "react-spinners";
 
+type DashStatTileProps = {
+  label: string;
+  stat: string;
+  text: string;
+  subscription?: {
+    planName: string;
+    renewalDate: string;
+  };
+  isLoadingUserData?: boolean;
+};
+
 const DashStatTile = ({
   label,
   stat,
   text,
   subscription,
   isLoadingUserData,
-}) => {
+}: DashStatTileProps) => {
   let Icon;
   switch (label) {
     case "Snippets Usage":
@@ -44,10 +55,10 @@ const DashStatTile = ({
         </div>
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="text-base font-medium text-darker dark:text-mid">
-            Plan: {subscription.planName}
+            Plan: {subscription?.planName}
           </p>
           <p className="text-base font-medium text-darker dark:text-mid">
-            Renewal date: {subscription.renewalDate}
+            Renewal date: {subscription?.renewalDate}
           </p>
         </div>
       </div>

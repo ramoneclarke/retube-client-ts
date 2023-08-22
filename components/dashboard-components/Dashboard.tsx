@@ -1,25 +1,27 @@
-import useRefetchingSession from "@/hooks/useRefetchingSession";
-import { handleSignOut } from "@/utils/handlers";
 import { withAuth } from "@/utils/withAuth";
 import React, { useState } from "react";
 import Layout from "../layout-components/Layout";
 import DashStatTile from "./DashStatTile";
-import DashSnippetsTile from "./DashSnippetsTile";
-import DashSummariesTile from "./DashSummariesTile";
-import { useUserData } from "@/hooks/useUserData";
-import Card from "../snippets-components/Card";
-import { AnimatePresence } from "framer-motion";
-import SnippetWindow from "../snippets-components/SnippetWindow";
-import SummaryWindow from "../summaries-components/SummaryWindow";
-import SummaryCard from "../summaries-components/SummaryCard";
+import {
+  useUserData,
+  UserData,
+  UserDataSnippet,
+  UserDataSummary,
+} from "@/hooks/useUserData";
 import DashboardSnippetsSection from "./DashboardSnippetsSection";
 import DashboardSummariesSection from "./DashboardSummariesSection";
 
-const Dashboard = ({ initialUserData }) => {
+type DashboardProps = {
+  initialUserData: UserData;
+};
+
+const Dashboard = ({ initialUserData }: DashboardProps) => {
   const [snippetWindowOpen, setSnippetWindowOpen] = useState(false);
-  const [selectedSnippetData, setSelectedSnippetData] = useState(null);
+  const [selectedSnippetData, setSelectedSnippetData] =
+    useState<UserDataSnippet | null>(null);
   const [summaryWindowOpen, setSummaryWindowOpen] = useState(false);
-  const [selectedSummaryData, setSelectedSummaryData] = useState(null);
+  const [selectedSummaryData, setSelectedSummaryData] =
+    useState<UserDataSummary | null>(null);
 
   const { data: userData, refetch: refetchUserData } =
     useUserData(initialUserData);

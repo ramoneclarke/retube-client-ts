@@ -3,6 +3,17 @@ import SummaryCard from "../summaries-components/SummaryCard";
 import { AnimatePresence, motion } from "framer-motion";
 import SummaryWindow from "../summaries-components/SummaryWindow";
 import Link from "next/link";
+import { UserData, UserDataSummary } from "@/hooks/useUserData";
+
+type DashboardSummariesSectionProps = {
+  userData: UserData;
+  setSelectedSummaryData: React.Dispatch<
+    React.SetStateAction<UserDataSummary | null>
+  >;
+  setSummaryWindowOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  summaryWindowOpen: boolean;
+  selectedSummaryData: UserDataSummary | null;
+};
 
 const DashboardSummariesSection = ({
   userData,
@@ -10,7 +21,7 @@ const DashboardSummariesSection = ({
   setSummaryWindowOpen,
   summaryWindowOpen,
   selectedSummaryData,
-}) => {
+}: DashboardSummariesSectionProps) => {
   if (userData.summaries.length === 0) {
     return (
       <div className="flex h-[12rem] w-full flex-col px-1 md:px-4">

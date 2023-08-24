@@ -1,37 +1,10 @@
-import NextAuth from "next-auth";
+import { Account, AuthOptions, Session, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { isJwtExpired } from "@/utils/AuthUtils";
+import { refreshToken } from "@/pages/api/auth/[...nextauth]";
+import { JWT } from "next-auth/jwt";
 
-export const refreshToken = async function (refreshToken, accessToken) {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/auth/token/refresh/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          refresh: refreshToken,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error - Status: ${response.status}`);
-    }
-    const { access, refresh } = await response.json();
-    // still within this block, return true
-    return [access, refresh];
-  } catch (error) {
-    console.error(error);
-    return [null, null];
-  }
-};
-
-export const authOptions = {
-  debug: true,
+export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -39,8 +12,8 @@ export const authOptions = {
   debug: process.env.NODE_ENV === "development",
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID ?? "defaultClientId",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "defaultClientSecret",
       authorization: {
         params: {
           access_type: "offline",
@@ -49,8 +22,16 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ user, token, account }) {
-      if (user) {
+    async jwt({
+      user,
+      token,
+      account,
+    }: {
+      user: User;
+      token: JWT;
+      account: Account | null;
+    }): Promise<any> {
+      if (user && account) {
         if (account.provider === "google") {
           // extract these two tokens
           const { access_token: accessToken, id_token: idToken } = account;
@@ -118,7 +99,13 @@ export const authOptions = {
       return token;
     },
 
-    async session({ session, token }) {
+    async session({
+      session,
+      token,
+    }: {
+      session: Session;
+      token: JWT;
+    }): Promise<Session> {
       // Send tokens to the client
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
@@ -126,5 +113,3 @@ export const authOptions = {
     },
   },
 };
-
-export default NextAuth(authOptions);

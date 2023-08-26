@@ -5,11 +5,33 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import AccountPage from "@/components/account-components/AccountPage";
 import { useColorMode } from "@/context/ColorModeContext";
+import type { Session } from "next-auth";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { getUserData } from "@/hooks/useUserData";
+import { UserData, getUserData } from "@/hooks/useUserData";
+import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { authOptions } from "@/utils/authOptions";
 
-export async function getServerSideProps(context) {
+interface PlanDetails {
+  id: number;
+  name: string;
+  stripe_product_id: string;
+  snippets_monthly_limit: number;
+  snippets_max_length: number;
+  summaries_monthly_limit: number;
+  summaries_max_video_length: number;
+  search_max_playlists: number;
+  search_max_playlist_videos: number;
+  search_max_video_length: number;
+}
+
+interface AccountProps {
+  userData: UserData;
+  planDetails: PlanDetails[];
+}
+
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   if (!session) {
@@ -33,9 +55,9 @@ export async function getServerSideProps(context) {
       planDetails: plans,
     },
   };
-}
+};
 
-const Account = ({ userData, planDetails }) => {
+const Account = ({ userData, planDetails }: AccountProps) => {
   const router = useRouter();
   const { darkMode } = useColorMode();
   const { data: session } = useRefetchingSession();
@@ -43,19 +65,22 @@ const Account = ({ userData, planDetails }) => {
   const createPortalSession = () => {
     const csrftoken = Cookies.get("csrftoken");
     const url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/payments/create-customer-portal-session/`;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrftoken,
-        Authorization: `Bearer ${session.accessToken}`,
-      },
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        router.push(data.redirect);
-      });
+
+    if (csrftoken && session) {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          router.push(data.redirect);
+        });
+    }
   };
 
   return (
@@ -76,24 +101,28 @@ const Account = ({ userData, planDetails }) => {
   );
 };
 
-const getPlansDetails = async (token) => {
+const getPlansDetails = async (token: string): Promise<PlanDetails[]> => {
   try {
     const csrftoken = Cookies.get("csrftoken");
-    const response = await fetch(
-      `
+    if (csrftoken) {
+      const response = await fetch(
+        `
           ${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/plans/`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrftoken,
-          Authorization: `Bearer ${token}`,
-        },
-        credentials: "include",
-      }
-    );
-    const data = await response.json();
-    return data;
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrftoken,
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+      return data;
+    } else {
+      return [];
+    }
   } catch (err) {
     throw err;
   }

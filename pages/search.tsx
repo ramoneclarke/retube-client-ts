@@ -1,16 +1,13 @@
 import React from "react";
-import Cookies from "js-cookie";
-import useRefetchingSession from "@/hooks/useRefetchingSession";
-import { useRouter } from "next/router";
 import Head from "next/head";
-import AccountPage from "@/components/account-components/AccountPage";
 import { useColorMode } from "@/context/ColorModeContext";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { getUserData } from "@/hooks/useUserData";
+import { UserData, getUserData } from "@/hooks/useUserData";
 import SearchPage from "@/components/search-components/SearchPage";
+import { authOptions } from "@/utils/authOptions";
+import { GetServerSideProps } from "next";
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   if (!session) {
@@ -31,9 +28,9 @@ export async function getServerSideProps(context) {
       userData: userData,
     },
   };
-}
+};
 
-const Search = ({ userData }) => {
+const Search = ({ userData }: { userData: UserData }) => {
   const { darkMode } = useColorMode();
 
   return (

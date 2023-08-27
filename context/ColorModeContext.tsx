@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 
-interface ColorModeContext {
+export interface ColorModeContext {
   darkMode: boolean;
   toggleDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -1,7 +1,15 @@
 import React from "react";
 import { FaRegMoon, FaRegSun } from "react-icons/fa";
 
-const ColorModeButton = ({ darkMode, toggleDarkMode }) => {
+type ColorModeButtonProps = {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+};
+
+const ColorModeButton = ({
+  darkMode,
+  toggleDarkMode,
+}: ColorModeButtonProps) => {
   return darkMode ? (
     <FaRegMoon
       className="no-tap-highlight cursor-pointer text-[1.8rem] text-brand lg:text-[2rem]"

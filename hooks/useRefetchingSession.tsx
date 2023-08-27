@@ -1,7 +1,14 @@
+import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
-export default function useRefetchingSession() {
+type RefetchingSessionReturnType = {
+  data: Session | null | undefined;
+  status: "loading" | "authenticated" | "unauthenticated" | undefined;
+  update: () => Promise<Session | null>;
+};
+
+export default function useRefetchingSession(): RefetchingSessionReturnType {
   /*
       custom hook that keeps the session up-to-date by refreshing it
       @param {number} refreshInterval: The refresh/polling interval in seconds. default is 5 minutes.

@@ -1,12 +1,13 @@
 import Head from "next/head";
-import useRefetchingSession from "@/hooks/useRefetchingSession";
 import Dashboard from "@/components/dashboard-components/Dashboard";
 import { useColorMode } from "@/context/ColorModeContext";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
 import { getUserData } from "@/hooks/useUserData";
+import { authOptions } from "@/utils/authOptions";
+import { GetServerSideProps } from "next";
+import { UserData } from "@/types/dataTypes";
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   if (!session) {
@@ -27,12 +28,10 @@ export async function getServerSideProps(context) {
       userData: userData,
     },
   };
-}
+};
 
-export default function Home({ userData }) {
+export default function Home({ userData }: { userData: UserData }) {
   const { darkMode } = useColorMode();
-
-  const { data: session, status, update } = useRefetchingSession();
 
   return (
     <>

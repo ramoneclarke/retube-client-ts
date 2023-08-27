@@ -4,10 +4,17 @@ import { parse } from "cookie";
 import { getServerSession } from "next-auth";
 import Head from "next/head";
 import React from "react";
-import { authOptions } from "./api/auth/[...nextauth]";
 import { getUserData } from "@/hooks/useUserData";
+import { GetServerSideProps } from "next";
+import { authOptions } from "@/utils/authOptions";
+import { UserData, UserDataSnippet } from "@/types/dataTypes";
 
-export async function getServerSideProps(context) {
+interface SnippetsProps {
+  userData: UserData;
+  initialSnippets: UserDataSnippet[];
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   if (!session) {
@@ -55,9 +62,9 @@ export async function getServerSideProps(context) {
       initialSnippets: snippets,
     },
   };
-}
+};
 
-const Snippets = ({ userData, initialSnippets }) => {
+const Snippets = ({ userData, initialSnippets }: SnippetsProps) => {
   const { darkMode } = useColorMode();
 
   return (

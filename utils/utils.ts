@@ -6,16 +6,16 @@ export function cn() {
   return twMerge(clsx(inputs));
 }
 
-export const formatSummary = (text) => {
+export const formatSummary = (text: string) => {
   const bulletPoints = text.split("- ").filter((point) => point.trim() !== "");
   return bulletPoints.map((point) => `- ${point.trim()}\n`).join("");
 };
 
-export const secondsToMinutes = (seconds) => {
+export const secondsToMinutes = (seconds: number) => {
   return Math.floor(seconds / 60);
 };
 
-export const formatDuration = (duration) => {
+export const formatDuration = (duration: number) => {
   let hours = Math.floor(duration / 3600);
   let minutes = Math.floor((duration % 3600) / 60);
   let seconds = duration % 60;

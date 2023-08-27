@@ -1,9 +1,10 @@
-import jwt from "jsonwebtoken";
+import jwt, { Jwt, JwtPayload } from "jsonwebtoken";
+import { JWT } from "next-auth/jwt";
 
-export const isJwtExpired = (token) => {
+export const isJwtExpired = (token: string) => {
   // offset by 60 seconds, so we will check if the token is "almost expired".
   const currentTime = Math.round(Date.now() / 1000 + 60);
-  const decoded = jwt.decode(token);
+  const decoded: any = jwt.decode(token);
 
   console.log(`Current time + 60 seconds: ${new Date(currentTime * 1000)}`);
   console.log(`Token lifetime: ${new Date(decoded["exp"] * 1000)}`);
@@ -24,7 +25,7 @@ export const isJwtExpired = (token) => {
   return true;
 };
 
-export const makeUrl = (...endpoints) => {
+export const makeUrl = (...endpoints: string[]) => {
   let url = endpoints.reduce((prevUrl, currentPath) => {
     if (prevUrl.length === 0) {
       return prevUrl + currentPath;

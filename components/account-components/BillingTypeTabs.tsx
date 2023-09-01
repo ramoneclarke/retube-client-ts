@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-const BillingTypeTabs = ({ setSelectedBillingType, selectedBillingType }) => {
+interface BillingTypeTabsProps {
+  setSelectedBillingType: React.Dispatch<React.SetStateAction<string>>;
+  selectedBillingType: string;
+}
+
+const BillingTypeTabs = ({
+  setSelectedBillingType,
+  selectedBillingType,
+}: BillingTypeTabsProps) => {
   return (
     <div className="flex h-16 w-[90%] flex-row gap-1 rounded-xl bg-slate-300 p-2 dark:bg-slate-700 md:w-2/3">
       <motion.button

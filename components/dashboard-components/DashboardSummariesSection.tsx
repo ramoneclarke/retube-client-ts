@@ -3,7 +3,7 @@ import SummaryCard from "../summaries-components/SummaryCard";
 import { AnimatePresence, motion } from "framer-motion";
 import SummaryWindow from "../summaries-components/SummaryWindow";
 import Link from "next/link";
-import { UserData, UserDataSummary } from "@/hooks/useUserData";
+import { UserData, UserDataSummary } from "@/types/dataTypes";
 
 type DashboardSummariesSectionProps = {
   userData: UserData;

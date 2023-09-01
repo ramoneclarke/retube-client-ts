@@ -2,14 +2,10 @@ import { withAuth } from "@/utils/withAuth";
 import React, { useState } from "react";
 import Layout from "../layout-components/Layout";
 import DashStatTile from "./DashStatTile";
-import {
-  useUserData,
-  UserData,
-  UserDataSnippet,
-  UserDataSummary,
-} from "@/hooks/useUserData";
+import { useUserData } from "@/hooks/useUserData";
 import DashboardSnippetsSection from "./DashboardSnippetsSection";
 import DashboardSummariesSection from "./DashboardSummariesSection";
+import { UserData, UserDataSnippet, UserDataSummary } from "@/types/dataTypes";
 
 type DashboardProps = {
   initialUserData: UserData;

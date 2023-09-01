@@ -3,7 +3,7 @@ import Card from "../snippets-components/Card";
 import { AnimatePresence, motion } from "framer-motion";
 import SnippetWindow from "../snippets-components/SnippetWindow";
 import Link from "next/link";
-import { UserData, UserDataSnippet } from "@/hooks/useUserData";
+import { UserData, UserDataSnippet } from "@/types/dataTypes";
 
 type DashboardSnippetsSectionProps = {
   userData: UserData;

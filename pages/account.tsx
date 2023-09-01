@@ -5,24 +5,11 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import AccountPage from "@/components/account-components/AccountPage";
 import { useColorMode } from "@/context/ColorModeContext";
-import type { Session } from "next-auth";
 import { getServerSession } from "next-auth";
-import { UserData, getUserData } from "@/hooks/useUserData";
+import { getUserData } from "@/hooks/useUserData";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { authOptions } from "@/utils/authOptions";
-
-interface PlanDetails {
-  id: number;
-  name: string;
-  stripe_product_id: string;
-  snippets_monthly_limit: number;
-  snippets_max_length: number;
-  summaries_monthly_limit: number;
-  summaries_max_video_length: number;
-  search_max_playlists: number;
-  search_max_playlist_videos: number;
-  search_max_video_length: number;
-}
+import { PlanDetails, UserData } from "@/types/dataTypes";
 
 interface AccountProps {
   userData: UserData;

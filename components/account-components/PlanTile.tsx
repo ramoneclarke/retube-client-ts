@@ -5,6 +5,17 @@ import { motion } from "framer-motion";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { formatDuration } from "@/utils/utils";
 import PlanBenefit from "./PlanBenefit";
+import { PlanDetails, UserData } from "@/types/dataTypes";
+
+interface PlanTileProps {
+  planName: string;
+  plan: PlanDetails;
+  price: string;
+  priceId: string;
+  selectedBillingType: string;
+  userData: UserData;
+  createPortalSession: () => void;
+}
 
 const PlanTile = ({
   planName,
@@ -14,7 +25,7 @@ const PlanTile = ({
   selectedBillingType,
   userData,
   createPortalSession,
-}) => {
+}: PlanTileProps) => {
   const router = useRouter();
   const { data: session } = useRefetchingSession();
 
@@ -26,20 +37,22 @@ const PlanTile = ({
   const createCheckoutSession = () => {
     const csrftoken = Cookies.get("csrftoken");
     const url = `${process.env.NEXT_PUBLIC_BACKEND_API_BASE}/payments/create-checkout-session/`;
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrftoken,
-        Authorization: `Bearer ${session.accessToken}`,
-      },
-      credentials: "include",
-      body: JSON.stringify({ price_id: priceId }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        router.push(data.redirect);
-      });
+    if (csrftoken && session) {
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrftoken,
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+        credentials: "include",
+        body: JSON.stringify({ price_id: priceId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          router.push(data.redirect);
+        });
+    }
   };
 
   return (

@@ -4,8 +4,19 @@ import Layout from "../layout-components/Layout";
 import BillingTypeTabs from "./BillingTypeTabs";
 import { motion } from "framer-motion";
 import { useUserData } from "@/hooks/useUserData";
+import { PlanDetails, UserData } from "@/types/dataTypes";
 
-const AccountPage = ({ createPortalSession, initialUserData, planDetails }) => {
+interface AccountPageProps {
+  createPortalSession: () => void;
+  initialUserData: UserData;
+  planDetails: PlanDetails[];
+}
+
+const AccountPage = ({
+  createPortalSession,
+  initialUserData,
+  planDetails,
+}: AccountPageProps) => {
   const [selectedBillingType, setSelectedBillingType] = useState("monthly");
 
   const { data: userData, refetch: refetchUserData } =

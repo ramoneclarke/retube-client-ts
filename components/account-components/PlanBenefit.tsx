@@ -1,7 +1,12 @@
 import React from "react";
 import { GiCheckMark } from "react-icons/gi";
 
-const PlanBenefit = ({ text, bold }) => {
+interface PlanBenefitProps {
+  text: string;
+  bold?: boolean;
+}
+
+const PlanBenefit = ({ text, bold }: PlanBenefitProps) => {
   if (bold) {
     return (
       <div className="flex h-16 flex-row items-center gap-2 md:h-20 lg:h-12">

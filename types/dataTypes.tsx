@@ -63,3 +63,16 @@ export type UserData = {
   playlists: never[];
   subscription: UserDataSubscription;
 };
+
+export interface PlanDetails {
+  id: number;
+  name: string;
+  stripe_product_id: string;
+  snippets_monthly_limit: number;
+  snippets_max_length: number;
+  summaries_monthly_limit: number;
+  summaries_max_video_length: number;
+  search_max_playlists: number;
+  search_max_playlist_videos: number;
+  search_max_video_length: number;
+}

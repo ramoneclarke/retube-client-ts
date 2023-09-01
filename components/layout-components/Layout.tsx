@@ -1,6 +1,6 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import MobileSidebar from "./MobileSidebar";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
@@ -8,7 +8,11 @@ import { useColorMode } from "@/context/ColorModeContext";
 import useRefetchingSession from "@/hooks/useRefetchingSession";
 import { useRouter } from "next/router";
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   const [open, setOpen] = useState(false);
   const [menuClicked, setMenuClicked] = useState(false);
   const isMobile = useMediaQuery("(max-width: 1023px)");

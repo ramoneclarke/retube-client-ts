@@ -1,12 +1,20 @@
 import React from "react";
 import PlanTile from "./PlanTile";
+import { PlanDetails, UserData } from "@/types/dataTypes";
+
+interface SubscriptionPlansProps {
+  selectedBillingType: string;
+  userData: UserData;
+  createPortalSession: () => void;
+  planDetails: PlanDetails[];
+}
 
 const SubscriptionPlans = ({
   selectedBillingType,
   userData,
   createPortalSession,
   planDetails,
-}) => {
+}: SubscriptionPlansProps) => {
   return (
     <div className="flex h-full w-full flex-col">
       <div className="flex w-full flex-col gap-4 md:flex-row">
